@@ -25,7 +25,7 @@ export default function Home() {
         <div className="mx-auto w-[min(100%-2rem,1200px)] flex items-center justify-between rounded-full px-4 py-2 bg-white/55 backdrop-blur-xl border border-white/60 shadow-[0_8px_24px_rgba(7,59,76,.10)] mt-3">
           <a href="#hero" className="flex items-center gap-2 font-display font-bold text-ink">
             <img src="img/seal-logo.jpg" alt="" className="w-9 h-9 rounded-full object-cover border border-white/70" />
-            <span>遊牧民ラボ<span className="block text-[10px] font-latin tracking-[.18em] text-lagoon-600">VOICE INPUT</span></span>
+            <span>Grow Voice<span className="block text-[10px] font-latin tracking-[.18em] text-lagoon-600">グロウボイス</span></span>
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-ink">
             <a href="#benefits" className="hover:text-lagoon-600">特長</a>
@@ -57,7 +57,7 @@ export default function Home() {
           </div>
           <div className="flex gap-x-10 gap-y-6 mt-12 flex-wrap items-end">
             {[["¥0", "月額・トークン0"], ["100%", "ローカル動作"], ["∞", "使うほど成長"]].map(([n, l]) => (
-              <div key={l}><div className="font-latin font-extrabold text-sun leading-none text-[clamp(3.2rem,2rem+5vw,6.5rem)]">{n}</div><div className="text-sm text-lagoon-200 tracking-wider mt-1">{l}</div></div>
+              <div key={l}><div className="font-latin font-extrabold text-sun leading-none text-[clamp(1.6rem,1.1rem+2.5vw,3.25rem)]">{n}</div><div className="text-xs text-lagoon-200 tracking-wider mt-1">{l}</div></div>
             ))}
           </div>
         </div>
@@ -115,16 +115,21 @@ export default function Home() {
 
       {/* ===== Screenshot ===== */}
       <section className="relative py-[clamp(5rem,3rem+8vw,10rem)]">
-        <div className="mx-auto w-[min(100%-2rem,1000px)] text-center">
+        <div className="mx-auto w-[min(100%-2rem,1180px)] text-center">
           <span className="eyebrow text-lagoon-600 reveal">Screenshot</span>
-          <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2 mb-8 reveal">これが、実際の画面。</h2>
-          <LiquidGlassCard className="reveal max-w-[920px] mx-auto !bg-white/70">
-            <div className="flex items-center gap-2 px-4 py-3 bg-[#eef4f3] border-b border-sand-200">
-              <span className="w-3 h-3 rounded-full bg-coral" /><span className="w-3 h-3 rounded-full bg-sun" /><span className="w-3 h-3 rounded-full bg-[#2f9e7d]" />
-              <em className="ml-3 not-italic text-xs text-ink-mute font-latin">voice-input — manual</em>
-            </div>
-            <img src="img/voice-shot.png" alt="音声入力ツールの画面" className="w-full block" />
-          </LiquidGlassCard>
+          <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2 mb-10 reveal">これが、実際の画面。</h2>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              ["img/tool-dict.png", "辞書 ・ 自動学習"],
+              ["img/tool-record.png", "録音キー"],
+              ["img/tool-visual.png", "見える化"],
+            ].map(([src, cap]) => (
+              <LiquidGlassCard key={cap} className="reveal !bg-white/70 !p-3">
+                <img src={src} alt={cap} className="w-full block rounded-lg shadow-[0_10px_30px_rgba(7,59,76,.14)]" />
+                <div className="mt-3 text-sm font-bold text-lagoon-700">{cap}</div>
+              </LiquidGlassCard>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -155,7 +160,9 @@ export default function Home() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section id="cta" className="relative min-h-[92svh] flex flex-col items-center justify-center text-center overflow-hidden bg-gradient-to-b from-lagoon-800 to-lagoon-900 text-white">
+      <section id="cta" className="relative min-h-[92svh] flex flex-col items-center justify-center text-center overflow-hidden bg-lagoon-900 text-white">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.png)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(7,59,76,.82) 0%, rgba(7,59,76,.7) 45%, rgba(7,59,76,.9) 100%)" }} />
         <span className="eyebrow text-lagoon-200 reveal">Get it</span>
         <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-8 reveal max-w-[16ch]">今日から、<br />タイピングを減らす。</h2>
         <div className="reveal mt-2">
@@ -174,7 +181,7 @@ export default function Home() {
       <footer id="footer" className="bg-lagoon-900 text-lagoon-100 py-14">
         <div className="mx-auto w-[min(100%-2rem,1100px)] flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3 font-display font-bold text-white text-lg">
-            <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />遊牧民ラボ
+            <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />Grow Voice
           </div>
           <p className="text-sm">建設×AI自動化を、ひとりで。海の向こうから。</p>
           <span className="text-xs text-lagoon-200">© 2026 Yubokumin Lab</span>
