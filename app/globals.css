@@ -25,7 +25,8 @@ body {
 .orb-canvas {
   position: fixed; inset: 0; z-index: 10; pointer-events: none;
 }
-.orb-canvas.interactive { pointer-events: auto; }
+/* ドラッグ機能は撤去したため常にクリックを下のUIへ通す */
+.orb-canvas.interactive { pointer-events: none; }
 
 /* 大見出しヘルパー */
 .display-1 { font-family: var(--font-display); font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; }

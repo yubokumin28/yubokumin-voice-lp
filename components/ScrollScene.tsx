@@ -33,17 +33,19 @@ export default function ScrollScene() {
       if (!wrap) return;
       // 世界座標でのポーズ（カメラ z=4.6, fov=42）
       const POSE = {
-        hero:     { x: 2.5,  y: -0.15, s: 0.82 },
-        benefits: { x: -2.6, y: 0.2,   s: 0.8 },
-        how:      { x: 2.7,  y: 0.55,  s: 0.58 },
-        cta:      { x: 0,    y: 0.4,   s: 1.0 },
+        hero:     { x: 2.2,  y: -0.15, s: 0.82, ry: -Math.PI * 0.08,  rx: 0 },
+        benefits: { x: -2.0, y: 0.2,   s: 0.72, ry: Math.PI * 0.5,   rx: 0 },
+        how:      { x: 2.15, y: 0.5,   s: 0.6,  ry: -Math.PI * 0.42, rx: 0.28 },
+        cta:      { x: 2.55, y: 0.1,   s: 0.62, ry: -Math.PI * 0.5,  rx: 0 },
       };
       gsap.set(g.position, { x: POSE.hero.x, y: POSE.hero.y });
       gsap.set(g.scale, { x: POSE.hero.s, y: POSE.hero.s, z: POSE.hero.s });
+      gsap.set(g.rotation, { y: POSE.hero.ry, x: POSE.hero.rx });
 
-      const animateTo = (p: { x: number; y: number; s: number }) => {
+      const animateTo = (p: { x: number; y: number; s: number; ry: number; rx: number }) => {
         gsap.to(g.position, { x: p.x, y: p.y, duration: 0.8, ease: "power3.inOut", overwrite: true });
         gsap.to(g.scale, { x: p.s, y: p.s, z: p.s, duration: 0.8, ease: "power3.inOut", overwrite: true });
+        gsap.to(g.rotation, { y: p.ry, x: p.rx, duration: 0.8, ease: "power3.inOut", overwrite: true });
       };
       const fade = (to: number) => gsap.to(wrap, { autoAlpha: to, duration: 0.5, overwrite: true });
 

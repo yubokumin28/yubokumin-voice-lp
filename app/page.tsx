@@ -24,7 +24,7 @@ export default function Home() {
       <header className="fixed top-0 inset-x-0 z-50 h-[68px] flex items-center">
         <div className="mx-auto w-[min(100%-2rem,1200px)] flex items-center justify-between rounded-full px-4 py-2 bg-white/55 backdrop-blur-xl border border-white/60 shadow-[0_8px_24px_rgba(7,59,76,.10)] mt-3">
           <a href="#hero" className="flex items-center gap-2 font-display font-bold text-ink">
-            <img src="img/seal-logo.svg" alt="" className="w-9 h-9 rounded-full" />
+            <img src="img/seal-logo.jpg" alt="" className="w-9 h-9 rounded-full object-cover border border-white/70" />
             <span>遊牧民ラボ<span className="block text-[10px] font-latin tracking-[.18em] text-lagoon-600">VOICE INPUT</span></span>
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-ink">
@@ -45,8 +45,8 @@ export default function Home() {
           <h1 className="display-1 text-white mt-3 mb-5 text-[clamp(2.6rem,1.6rem+5vw,5.6rem)] max-w-[15ch]">
             声で、整って、<span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">そのまま</span>入る。
           </h1>
-          <p className="text-lagoon-100 text-[clamp(1rem,.9rem+.5vw,1.35rem)] leading-relaxed max-w-[44ch]">
-            マイクに話すだけ。「えー」も誤変換も、AIが裏で直してからカーソル位置へ流し込む。<br />月額有料の音声入力を、<strong className="text-white">完全ローカル・無料</strong>で。
+          <p className="text-lagoon-100 text-[clamp(1rem,.9rem+.5vw,1.35rem)] leading-relaxed max-w-[46ch]">
+            ローカルLLM搭載。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <GlassButton href="#cta" primary className="text-lg !px-8 !py-4">
@@ -55,9 +55,9 @@ export default function Home() {
             </GlassButton>
             <GlassButton href="#how" className="text-lg !px-8 !py-4 !text-white !bg-white/15 !border-white/35">仕組みを見る</GlassButton>
           </div>
-          <div className="flex gap-8 mt-12 flex-wrap">
-            {[["¥0", "月額コスト"], ["100%", "ローカル処理"], ["0", "クラウド送信"]].map(([n, l]) => (
-              <div key={l}><div className="font-latin font-extrabold text-2xl text-sun">{n}</div><div className="text-xs text-lagoon-200 tracking-wider">{l}</div></div>
+          <div className="flex gap-x-10 gap-y-6 mt-12 flex-wrap items-end">
+            {[["¥0", "月額・トークン0"], ["100%", "ローカル動作"], ["∞", "使うほど成長"]].map(([n, l]) => (
+              <div key={l}><div className="font-latin font-extrabold text-sun leading-none text-[clamp(3.2rem,2rem+5vw,6.5rem)]">{n}</div><div className="text-sm text-lagoon-200 tracking-wider mt-1">{l}</div></div>
             ))}
           </div>
         </div>
@@ -72,9 +72,9 @@ export default function Home() {
           </div>
           <div className="md:pl-[36%]">
             {[
-              ["01", "月額0円", "精度の高い音声入力はたいてい有料サブスク。これは買い切りも課金もなし。あなたのPCの中だけで動きます。", "買い切り0円"],
-              ["02", "自動で整文", "「えー」「あのー」やよくある誤変換、言い直しをAIが除去。話し言葉が、そのまま読める文章になります。", "AIが推敲"],
-              ["03", "完全ローカル", "音声も文章も外部に送りません。推敲も句読点付けもPC内のLLMが担当。情報は出ていきません。", "送信なし"],
+              ["01", "話すほど、育つ", "ローカルLLMがあなたの話し方の癖を学習。使えば使うほど認識と変換が正確になり、あなた専用の音声入力に育っていきます。", "学習AI"],
+              ["02", "押して話すだけ", "起動ボタンを押しっぱなしにして喋るだけ。整った文章が、いま開いているアプリのカーソル位置にそのまま入っていきます。", "ワンボタン"],
+              ["03", "辞書も自分仕様に", "変換させたい固有名詞や独自の言い回しも、話して覚えさせるだけ。完全ローカルで動くので月額もトークン消費もゼロです。", "育つ辞書"],
             ].map(([no, t, d, chip]) => (
               <div key={no} className="reveal grid md:grid-cols-[80px_1fr_auto] gap-4 md:gap-8 items-center py-7 border-t border-sand-300">
                 <div className="font-latin font-extrabold text-3xl text-lagoon-300">{no}</div>
@@ -94,13 +94,13 @@ export default function Home() {
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
           <div className="max-w-[640px] mb-14 reveal">
             <span className="eyebrow text-lagoon-600">How it works</span>
-            <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">話す → 整う → 入る。<br />たった3ステップ。</h2>
+            <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">押して話す → 整って学ぶ → 入る。<br />たった3ステップ。</h2>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {[
-              ["🎙️", "話す", "好きなキーで起動して、いつも通り話すだけ。常駐しているのですぐ呼べます。"],
-              ["🧠", "整う", "PC内のAIが誤変換・フィラーを除去し、句読点まで付けて推敲します。"],
-              ["📄", "入る", "整った文章が、いま開いているアプリのカーソル位置にそのまま入ります。"],
+              ["🎙️", "押して話す", "起動キーを押しっぱなしにして、いつも通り話すだけ。常駐しているのですぐ呼べます。"],
+              ["🧠", "整って学ぶ", "PC内のローカルLLMが誤変換やフィラーを除去して整文。同時にあなたの癖や言葉を学習します。"],
+              ["📄", "そのまま入る", "整った文章が、いま開いているアプリのカーソル位置にそのまま流れ込みます。"],
             ].map(([ic, t, d], i) => (
               <LiquidGlassCard key={t} className="reveal p-7">
                 <div className="text-4xl mb-3">{ic}</div>
@@ -167,14 +167,14 @@ export default function Home() {
             </GlassButton>
           </LiquidGlassCard>
         </div>
-        <p className="text-lagoon-200 text-sm mt-6 reveal">完全ローカル ・ 月額なし ・ クラウド送信なし</p>
+        <p className="text-lagoon-200 text-sm mt-6 reveal">完全ローカル ・ 月額0 ・ トークン消費なし ・ 使うほど育つ</p>
       </section>
 
       {/* ===== Footer ===== */}
       <footer id="footer" className="bg-lagoon-900 text-lagoon-100 py-14">
         <div className="mx-auto w-[min(100%-2rem,1100px)] flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center gap-3 font-display font-bold text-white text-lg">
-            <img src="img/seal-logo.svg" alt="" className="w-10 h-10 rounded-full" />遊牧民ラボ
+            <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />遊牧民ラボ
           </div>
           <p className="text-sm">建設×AI自動化を、ひとりで。海の向こうから。</p>
           <span className="text-xs text-lagoon-200">© 2026 Yubokumin Lab</span>
