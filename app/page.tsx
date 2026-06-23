@@ -3,6 +3,7 @@ import dynamic from "next/dynamic";
 import { useEffect } from "react";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 import { GlassButton } from "@/components/ui/GlassButton";
+import { VoiceWave } from "@/components/ui/VoiceWave";
 
 const ScrollScene = dynamic(() => import("@/components/ScrollScene"), { ssr: false });
 
@@ -109,6 +110,22 @@ export default function Home() {
                 <p className="text-ink-soft leading-relaxed">{d}</p>
               </LiquidGlassCard>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== Voice waveform ===== */}
+      <section id="live" className="relative py-[clamp(5rem,3rem+8vw,10rem)] overflow-hidden">
+        <div className="mx-auto w-[min(100%-2rem,900px)] text-center">
+          <span className="eyebrow text-lagoon-600 reveal">Live</span>
+          <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2 mb-3 reveal">押している間、<br />耳をすませている。</h2>
+          <p className="text-ink-soft leading-relaxed max-w-[44ch] mx-auto mb-10 reveal">
+            起動キーを押すと、ローカルLLMがあなたの声をリアルタイムに受け止め、整った文章へ変えていきます。
+          </p>
+          <div className="reveal">
+            <LiquidGlassCard className="!bg-white/60 px-6 py-10 md:px-12 md:py-12">
+              <VoiceWave />
+            </LiquidGlassCard>
           </div>
         </div>
       </section>
