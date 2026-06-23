@@ -4,9 +4,8 @@ import { useFrame } from "@react-three/fiber";
 import { useGLTF, ContactShadows } from "@react-three/drei";
 import * as THREE from "three";
 
-// 本番は basePath（/yubokumin-voice-lp）配下に public が配信されるため、手動で接頭辞を付ける
-const PREFIX = process.env.NODE_ENV === "production" ? "/yubokumin-voice-lp" : "";
-const SEAL_URL = `${PREFIX}/models/seal.glb`;
+// Vercel ではルート配信なので接頭辞は不要（public 直下がそのまま / に配信される）
+const SEAL_URL = "/models/seal.glb";
 
 // アザラシの基本の向き（正面 = カメラ側）。モデルは元々+X(右)向きなので -π/2 で正面に向ける
 const FACE_Y = -Math.PI * 0.5;
