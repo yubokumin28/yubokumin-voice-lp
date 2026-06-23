@@ -33,7 +33,7 @@ export default function Home() {
             <a href="#how" className="hover:text-lagoon-600">使い方</a>
             <a href="#testi" className="hover:text-lagoon-600">声</a>
           </nav>
-          <GlassButton href="#cta" primary className="!px-5 !py-2 text-sm">無料で使う</GlassButton>
+          <GlassButton href="/download" primary className="!px-5 !py-2 text-sm">無料で使う</GlassButton>
         </div>
       </header>
 
@@ -50,7 +50,7 @@ export default function Home() {
             ローカルLLM搭載。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
-            <GlassButton href="#cta" primary className="text-lg !px-8 !py-4">
+            <GlassButton href="/download" primary className="text-lg !px-8 !py-4">
               無料で使う
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </GlassButton>
@@ -185,7 +185,7 @@ export default function Home() {
         <div className="reveal mt-2">
           <LiquidGlassCard className="!bg-white/10 !border-white/25 px-8 py-5 inline-flex items-center gap-6">
             <span className="font-latin font-extrabold text-4xl text-sun">¥0</span>
-            <GlassButton primary href="#" className="text-lg">
+            <GlassButton primary href="/download" className="text-lg">
               無料で使う
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </GlassButton>
@@ -201,6 +201,7 @@ export default function Home() {
             <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />Grow Voice
           </div>
           <p className="text-sm">建設×AI自動化を、ひとりで。海の向こうから。</p>
+          <a href="/download" className="text-sm font-bold text-sun hover:text-white transition-colors">作っている人を見る →</a>
           <span className="text-xs text-lagoon-200">© 2026 Yubokumin Lab</span>
         </div>
       </footer>
