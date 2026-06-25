@@ -45,13 +45,19 @@ export default function DownloadPage() {
           <div className="space-y-4 text-ink-soft leading-relaxed text-[1.02rem]">
             <p>
               はじめまして。<strong className="text-ink">遊牧民ラボ</strong>です。建設の現場で働きながら、
-              日々の「めんどくさい作業」をAIで減らす道具を、ひとりでコツコツ作っています。
+              AIを活用して日々たくさんの道具を作り、日常業務をどんどん便利に・効率化させています。
               この <strong className="text-ink">Grow Voice（グロウボイス）</strong> もそのひとつ。
             </p>
             <p>
-              完全に<strong className="text-ink">無料</strong>で配っています。お金より先に、いま欲しいのは
-              「こんな道具を作っているやつがいる」と<strong className="text-ink">知ってもらうこと</strong>。
-              それが、次の道具を作りつづける燃料になります。
+              目指しているのは、<strong className="text-ink">みなさんの業務がもっとラクになって、
+              もっと時間を節約できるようになること</strong>。忙しい毎日に少しでも余白を取り戻して
+              もらえる道具を、これからも作りつづけます。
+            </p>
+            <p>
+              そしていま、<strong className="text-ink">AIを武器に、個人事業主として独立できるよう</strong>
+              ひとりで挑戦しています。完全に無料で配っているのは、お金より先に「こんなやつがいる」と
+              知ってもらいたいから。もし応援していただけるなら、<strong className="text-ink">SNSのフォローだけ
+              お願いします</strong>。それが、次の道具を作りつづける燃料になります。
             </p>
           </div>
         </section>

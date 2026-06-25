@@ -25,7 +25,9 @@ body {
 .orb-canvas {
   position: fixed; inset: 0; z-index: 10; pointer-events: none;
 }
-/* ドラッグ機能は撤去したため常にクリックを下のUIへ通す */
+/* ドラッグ機能は撤去済み。R3Fが内部に pointer-events:auto の入れ物を作るため、
+   配下すべてを強制的にクリック透過にして下のボタンを必ず押せるようにする */
+.orb-canvas, .orb-canvas * { pointer-events: none !important; }
 .orb-canvas.interactive { pointer-events: none; }
 
 /* 大見出しヘルパー */
