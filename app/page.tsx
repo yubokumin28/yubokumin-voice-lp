@@ -150,6 +150,31 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ===== Learning depth (育つ辞書のしくみ) ===== */}
+      <section id="learn" className="relative py-[clamp(5rem,3rem+8vw,10rem)]">
+        <div className="mx-auto w-[min(100%-2rem,1100px)] relative">
+          <img src="img/seal-logo.jpg" alt="" className="hidden lg:block absolute right-0 -top-2 w-20 h-20 rounded-full object-cover border border-white/70 shadow-[0_10px_30px_rgba(7,59,76,.18)] animate-floaty" />
+          <div className="max-w-[680px] mb-14 reveal">
+            <span className="eyebrow text-lagoon-600">Grows with you</span>
+            <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">使うほど、あなた専用に<br />育つ辞書のしくみ。</h2>
+            <p className="text-ink-soft leading-relaxed max-w-[52ch] mt-4">話した履歴をローカルLLMが読み直し、誤変換を自動で辞書に蓄積。再起動しても消えず、間違いは自分で正していきます。</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {[
+              ["🧠", "育つ辞書（自動学習）", "「本当はこう言いたかった」をローカルLLMが裏で読み取り、誤変換を自動で辞書に登録。話すほど、あなたの言葉に変換が近づきます。"],
+              ["💾", "消えずに、蓄積される", "覚えた言い換えはPC内に保存。アプリやPCを再起動しても消えず、使うほど積み上がる「あなた専用辞書」に育ちます。"],
+              ["🔁", "間違いは自動で修正", "1回で覚えた仮登録は「確認中」として様子見。後で誤りと分かれば自動で取り消し、正しければ確定。間違いを引きずりません。"],
+            ].map(([ic, t, d], i) => (
+              <LiquidGlassCard key={t} className="reveal p-7">
+                <div className="text-4xl mb-3 inline-block animate-floaty" style={{ animationDelay: `${i * 0.9}s` }}>{ic}</div>
+                <h3 className="font-display font-bold text-xl mt-1 mb-2">{t}</h3>
+                <p className="text-ink-soft leading-relaxed">{d}</p>
+              </LiquidGlassCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ===== Testimonials ===== */}
       <section id="testi" className="relative py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-lagoon-50 to-sand-50">
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
