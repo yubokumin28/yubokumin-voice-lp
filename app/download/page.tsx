@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 
 export const metadata: Metadata = {
-  title: "作っている人 — Grow Voice（グロウボイス）",
+  title: "ダウンロード — Grow Voice（グロウボイス）",
   description:
-    "サラリーマンから個人事業主へ。AIで時間を生み出す道具を、ひとりで作っています。気に入ったら、SNSでひと言ひろめてください。",
+    "声で話すだけで整った文章がそのままカーソルに入る、無料の音声入力ツール Grow Voice。個人でコツコツ作っています。気に入ったら SNS でひと言ひろめてもらえると嬉しいです。",
 };
 
 const X_URL = "https://x.com/Yubokumin28";
@@ -46,19 +46,21 @@ export default function DownloadPage() {
         <section className="mb-8">
           <div className="text-center mb-6">
             <img src="/img/seal-hero.png" alt="あざらしの遊牧民" className="w-44 h-44 md:w-52 md:h-52 mx-auto rounded-[28px] object-cover border-2 border-white shadow-[0_18px_50px_rgba(7,59,76,.22)] mb-4" />
-            <div className="eyebrow text-lagoon-600">🤖 AIロボットクリエイター ｜ 遊牧民</div>
-            <h1 className="font-display font-bold text-[clamp(1.7rem,1.2rem+2.2vw,2.7rem)] leading-tight mt-1">サラリーマンから、個人事業主へ。</h1>
+            <div className="eyebrow text-lagoon-600">🦭 個人でツールを作っています ｜ 遊牧民</div>
+            <h1 className="font-display font-bold text-[clamp(1.7rem,1.2rem+2.2vw,2.7rem)] leading-tight mt-1">「書く」を、声でラクに。</h1>
           </div>
           <div className="space-y-4 text-ink-soft leading-relaxed text-[1.02rem]">
             <p className="text-[1.12rem] font-bold text-ink">
-              「毎日同じことの繰り返しで、自分の時間が全くない…」<br />
-              <span className="text-ink-soft font-medium">そんな風に、悩んでいませんか？</span>
+              「キーボードを打つのが多くて、手も時間も足りない…」<br />
+              <span className="text-ink-soft font-medium">そんな人のために作りました。</span>
             </p>
             <p>
-              私は、あなたの時間を生み出す<strong className="text-ink">AIツール</strong>や、3Dで魅せる
-              <strong className="text-ink">「ホームページ・LP」</strong>を、ひとりで開発しています。
-              この <strong className="text-ink">Grow Voice</strong> もそのひとつ。完全無料で配っているのは、
-              お金より先に<strong className="text-ink">「こんなやつがいる」</strong>と知ってほしいからです。🔥
+              <strong className="text-ink">Grow Voice</strong> は、声で話すだけで、整った文章がそのままカーソルに入る音声入力ツールです。
+              <strong className="text-ink">月額0円・完全ローカル</strong>（ネット送信なし）で、使うほどあなたの言葉に育ちます。
+            </p>
+            <p>
+              作っているのは、こういう “あったらいいな” の道具を個人でコツコツ試しているだけのひとりです。
+              無料で配っているのは、まず使ってみて気に入ってもらえたら嬉しいから。それだけです。
             </p>
             <p className="text-sm text-ink-mute">アイコンは、あざらし好きな妻 👸🏻 のために “あざらしの遊牧民” にしました 🦭</p>
           </div>
@@ -66,19 +68,19 @@ export default function DownloadPage() {
 
         {/* ② ぶっちゃけストーリー */}
         <LiquidGlassCard className="!bg-white/72 p-7 md:p-9 mb-7">
-          <div className="eyebrow text-coral-dark mb-2">📖 ぶっちゃけます</div>
-          <h2 className="font-display font-bold text-2xl md:text-[1.7rem] mb-4">サラリーマン、もう飽きませんか？</h2>
+          <div className="eyebrow text-coral-dark mb-2">📝 こんな人に</div>
+          <h2 className="font-display font-bold text-2xl md:text-[1.7rem] mb-4">たくさん書く人ほど、ラクになります。</h2>
           <div className="space-y-4 text-ink-soft leading-relaxed">
             <p>
-              転職と移住を繰り返し、<strong className="text-ink">20種類以上の泥臭い仕事</strong>を経験。
-              その中で <strong className="text-ink">3年で年収 +400万円 / 資産600万</strong> を作り、残業もほぼゼロに。
+              議事録・メール・チャット・ブログ・原稿…<strong className="text-ink">文字を打つ時間が長い人</strong>ほど、効果が大きいツールです。
+              話すスピードは、タイピングよりずっと速い。考えたことを、そのまま声で残せます。
             </p>
             <p>
-              でも気づきました。どれだけ効率化しても、会社員でいる限り
-              <strong className="text-ink">「他人のために、自分の時間を切り売りしている」</strong>だけ。
-              だから今、Claude Code や Python で道具を自作し、<strong className="text-ink">個人事業主としての独立</strong>へ突き進んでいます。
+              市販の音声入力は月額制やクラウド送信が多いけれど、Grow Voice は
+              <strong className="text-ink">完全無料・このPCの中だけ</strong>で完結。誤変換は、使うほど
+              <strong className="text-ink">あなた専用の辞書</strong>に覚えていきます。
             </p>
-            <p className="font-display font-bold text-lagoon-700 text-center pt-1">＼ すべての物事は、あなたの解釈で世界が一変する ／</p>
+            <p className="font-display font-bold text-lagoon-700 text-center pt-1">＼ まずは気軽に使ってみてください ／</p>
           </div>
         </LiquidGlassCard>
 
