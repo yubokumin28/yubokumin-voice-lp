@@ -42,12 +42,18 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.png)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(95deg, rgba(7,59,76,.72) 0%, rgba(7,59,76,.42) 38%, rgba(7,59,76,.05) 62%, transparent 78%), linear-gradient(0deg, rgba(7,59,76,.5), transparent 35%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1200px)] pt-[68px]">
-          <span className="eyebrow text-lagoon-100">Voice Input Tool</span>
+          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+            <span className="font-latin font-extrabold tracking-tight leading-none text-white text-[clamp(1.7rem,1.1rem+2.2vw,3rem)]">
+              Grow <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">Voice</span>
+            </span>
+            <span className="text-lagoon-100 tracking-[.12em] text-[clamp(.95rem,.78rem+.45vw,1.2rem)]">グロウ ボイス</span>
+          </div>
+          <span className="eyebrow text-lagoon-200 mt-2 block">Voice Input Tool ・ 音声入力ツール</span>
           <h1 className="display-1 text-white mt-3 mb-5 text-[clamp(2.6rem,1.6rem+5vw,5.6rem)] max-w-[15ch]">
             声で、整って、<span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">そのまま</span>入る。
           </h1>
           <p className="text-lagoon-100 text-[clamp(1rem,.9rem+.5vw,1.35rem)] leading-relaxed max-w-[46ch]">
-            ローカルLLM搭載。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
+            <strong className="text-white">Grow Voice</strong> は、ローカルLLM搭載の音声入力ツール。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
           </p>
           <div className="flex flex-wrap gap-3 mt-8">
             <GlassButton href="/download" primary className="text-lg !px-8 !py-4">
