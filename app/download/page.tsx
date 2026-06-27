@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 const X_URL = "https://x.com/Yubokumin28";
 const LINKEDIN_URL = "https://www.linkedin.com/in/watarutakahashi1992/";
 const LIBECITY_URL = "https://libecity.com/user_profile/c0bL05vIXaYL1a2dpMrWYBSbGEI3";
-// TODO: 配布ファイルのURLが決まったらここに入れる。空のままなら「準備中」表示。
-const DOWNLOAD_URL = "";
 
 const MOVES = [
   "秋田", "群馬", "小樽", "海老名", "鈴鹿", "ベトナム", "箱根", "河口湖",
@@ -25,8 +23,6 @@ const JOBS = [
 ];
 
 export default function DownloadPage() {
-  const ready = DOWNLOAD_URL.length > 0;
-
   return (
     <main className="relative min-h-[100svh] text-ink overflow-hidden">
       {/* 夜明けの海＝独立への一歩 */}
@@ -199,29 +195,30 @@ export default function DownloadPage() {
 
         {/* ⑦ ダウンロード */}
         <div id="get" className="scroll-mt-8" />
-        <LiquidGlassCard className="!bg-white/65 p-7 md:p-9 text-center">
-          <div className="eyebrow text-lagoon-600 mb-1">Download</div>
-          <h2 className="font-display font-bold text-2xl md:text-3xl mb-3">Grow Voice を手に入れる</h2>
-          {ready ? (
-            <>
-              <p className="text-ink-soft mb-6">Windows 用 ・ 完全無料 ・ 月額もトークン消費もゼロ</p>
-              <GlassButton href={DOWNLOAD_URL} primary className="text-lg !px-8 !py-4">
-                ダウンロード（無料）
-                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14" /></svg>
-              </GlassButton>
-            </>
-          ) : (
-            <>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sun/20 border border-sun/40 text-ink font-bold mb-4">
-                <span className="w-2 h-2 rounded-full bg-coral animate-pulse" />
-                公開準備中
-              </div>
-              <p className="text-ink-soft leading-relaxed max-w-[40ch] mx-auto">
-                いま最後の仕上げをしています。上の X ・ LinkedIn をフォローしておけば、
-                公開したらすぐ気づけます。もう少しだけ、お待ちください。
-              </p>
-            </>
-          )}
+        <LiquidGlassCard className="!bg-white/72 p-7 md:p-9 text-center">
+          <div className="eyebrow text-lagoon-600 mb-1">Download ・ v1.0.0</div>
+          <h2 className="font-display font-bold text-2xl md:text-3xl mb-2">Grow Voice を手に入れる</h2>
+          <p className="text-ink-soft mb-6">完全無料 ・ 月額もトークン消費もゼロ。<br className="sm:hidden" />お使いの OS の ZIP を選んでください。</p>
+          <div className="grid sm:grid-cols-2 gap-4 max-w-[580px] mx-auto">
+            <a href="/downloads/GrowVoice-Windows-v1.0.0.zip" download
+              className="group flex flex-col items-center gap-1.5 rounded-2xl p-6 text-white bg-gradient-to-br from-lagoon-600 to-lagoon-800 hover:-translate-y-1 transition-transform shadow-[0_14px_40px_rgba(11,98,110,.32)]">
+              <svg viewBox="0 0 24 24" className="w-9 h-9 mb-1" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
+              <span className="font-display font-bold text-lg">Windows 版</span>
+              <span className="text-xs text-lagoon-100">.zip ・ Windows 10 / 11</span>
+              <span className="mt-2 inline-flex items-center gap-1 text-sm font-bold">ダウンロード <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.6"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14" /></svg></span>
+            </a>
+            <a href="/downloads/GrowVoice-macOS-v1.0.0.zip" download
+              className="group flex flex-col items-center gap-1.5 rounded-2xl p-6 text-white bg-gradient-to-br from-ink to-lagoon-900 hover:-translate-y-1 transition-transform shadow-[0_14px_40px_rgba(12,43,51,.32)]">
+              <svg viewBox="0 0 24 24" className="w-9 h-9 mb-1" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
+              <span className="font-display font-bold text-lg">Mac 版</span>
+              <span className="text-xs text-lagoon-100">.zip ・ macOS</span>
+              <span className="mt-2 inline-flex items-center gap-1 text-sm font-bold">ダウンロード <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.6"><path d="M12 3v12m0 0l-5-5m5 5l5-5M5 21h14" /></svg></span>
+            </a>
+          </div>
+          <p className="text-xs text-ink-mute mt-5 leading-relaxed">
+            解凍して「セットアップ」を実行 → 完了後に「音声入力を起動」。<br />
+            くわしい手順は ZIP 同梱の <strong>manual.html</strong> に Windows / Mac 別で書いてあります。
+          </p>
         </LiquidGlassCard>
 
         <p className="text-center text-xs text-ink-mute mt-10">© 2026 Yubokumin Lab ・ 建設 × AI自動化を、ひとりで。海の向こうから。</p>
