@@ -56,6 +56,11 @@ export default function Home() {
             </GlassButton>
             <GlassButton href="#how" className="text-lg !px-8 !py-4 !text-white !bg-white/15 !border-white/35">仕組みを見る</GlassButton>
           </div>
+          <a href="/download" className="peek-badge group mt-6 inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/30 backdrop-blur-md px-4 py-2 text-sm text-lagoon-100 hover:bg-white/20 transition-colors">
+            <span className="text-base">👀</span>
+            <span>押した先で、声が文章に変わる瞬間を体験</span>
+            <span className="transition-transform group-hover:translate-x-1">→</span>
+          </a>
           <div className="flex gap-x-10 gap-y-6 mt-12 flex-wrap items-end">
             {[["¥0", "月額・トークン0"], ["100%", "ローカル動作"], ["∞", "使うほど成長"]].map(([n, l]) => (
               <div key={l}><div className="font-latin font-extrabold text-sun leading-none text-[clamp(1.6rem,1.1rem+2.5vw,3.25rem)]">{n}</div><div className="text-xs text-lagoon-200 tracking-wider mt-1">{l}</div></div>
@@ -65,7 +70,9 @@ export default function Home() {
       </section>
 
       {/* ===== Benefits ===== */}
-      <section id="benefits" className="relative py-[clamp(5rem,3rem+8vw,10rem)]">
+      <section id="benefits" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)]">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-ocean.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(253,251,246,.90) 0%, rgba(238,250,248,.78) 50%, rgba(253,251,246,.92) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
           <div className="max-w-[640px] mb-14 reveal ml-auto text-right">
             <span className="eyebrow text-lagoon-600">Why it is enough</span>
@@ -91,7 +98,9 @@ export default function Home() {
       </section>
 
       {/* ===== How it works ===== */}
-      <section id="how" className="relative py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-sand-50 to-lagoon-50">
+      <section id="how" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-sand-50 to-lagoon-50">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-shore.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(250,245,234,.88) 0%, rgba(238,250,248,.80) 55%, rgba(250,245,234,.9) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
           <div className="max-w-[640px] mb-14 reveal">
             <span className="eyebrow text-lagoon-600">How it works</span>
@@ -116,6 +125,8 @@ export default function Home() {
 
       {/* ===== Voice waveform ===== */}
       <section id="live" className="relative py-[clamp(5rem,3rem+8vw,10rem)] overflow-hidden">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-ocean.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(253,251,246,.92) 0%, rgba(238,250,248,.80) 50%, rgba(253,251,246,.93) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,900px)] text-center">
           <span className="eyebrow text-lagoon-600 reveal">Live</span>
           <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2 mb-3 reveal">押している間、<br />耳をすませている。</h2>
@@ -151,9 +162,11 @@ export default function Home() {
       </section>
 
       {/* ===== Learning depth (育つ辞書のしくみ) ===== */}
-      <section id="learn" className="relative py-[clamp(5rem,3rem+8vw,10rem)]">
+      <section id="learn" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)]">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-shore.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(253,251,246,.91) 0%, rgba(238,250,248,.80) 50%, rgba(253,251,246,.92) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)] relative">
-          <img src="img/seal-logo.jpg" alt="" className="hidden lg:block absolute right-0 -top-2 w-20 h-20 rounded-full object-cover border border-white/70 shadow-[0_10px_30px_rgba(7,59,76,.18)] animate-floaty" />
+          <img src="img/seal-logo.jpg" alt="" className="block absolute right-0 -top-8 w-14 h-14 sm:w-16 sm:h-16 lg:-top-2 lg:w-20 lg:h-20 rounded-full object-cover border border-white/70 shadow-[0_10px_30px_rgba(7,59,76,.18)] animate-floaty" />
           <div className="max-w-[680px] mb-14 reveal">
             <span className="eyebrow text-lagoon-600">Grows with you</span>
             <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">使うほど、あなた専用に<br />育つ辞書のしくみ。</h2>
@@ -176,7 +189,9 @@ export default function Home() {
       </section>
 
       {/* ===== Testimonials ===== */}
-      <section id="testi" className="relative py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-lagoon-50 to-sand-50">
+      <section id="testi" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-lagoon-50 to-sand-50">
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-sand.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(238,250,248,.82) 0%, rgba(250,245,234,.80) 50%, rgba(253,251,246,.88) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
           <div className="text-center mb-14 reveal">
             <span className="eyebrow text-lagoon-600">Voices</span>
@@ -203,10 +218,11 @@ export default function Home() {
 
       {/* ===== CTA ===== */}
       <section id="cta" className="relative min-h-[92svh] flex flex-col items-center justify-center text-center overflow-hidden bg-lagoon-900 text-white">
-        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.png)" }} />
-        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(7,59,76,.82) 0%, rgba(7,59,76,.7) 45%, rgba(7,59,76,.9) 100%)" }} />
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/cta-underwater.jpg)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "radial-gradient(135% 100% at 50% 6%, rgba(7,59,76,.26) 0%, rgba(7,59,76,.64) 46%, rgba(6,36,68,.92) 100%)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(6,36,68,.55) 100%)" }} />
         <span className="eyebrow text-lagoon-200 reveal">Get it</span>
-        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-8 reveal max-w-[16ch]">今日から、<br />タイピングを減らす。</h2>
+        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-8 reveal max-w-[16ch] drop-shadow-[0_3px_22px_rgba(4,24,44,.5)]">今日から、<br />タイピングを減らす。</h2>
         <div className="reveal mt-2">
           <LiquidGlassCard className="!bg-white/10 !border-white/25 px-8 py-5 inline-flex items-center gap-6">
             <span className="font-latin font-extrabold text-4xl text-sun">¥0</span>
