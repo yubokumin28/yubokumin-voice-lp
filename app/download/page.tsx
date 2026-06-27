@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
+import { ShareButtons } from "@/components/ShareButtons";
 
 export const metadata: Metadata = {
   title: "ダウンロード — Grow Voice（グロウボイス）",
@@ -10,16 +11,6 @@ export const metadata: Metadata = {
 const X_URL = "https://x.com/Yubokumin28";
 const LINKEDIN_URL = "https://www.linkedin.com/in/watarutakahashi1992/";
 const LIBECITY_URL = "https://libecity.com/user_profile/c0bL05vIXaYL1a2dpMrWYBSbGEI3";
-
-// SNS 拡散用：紹介文を入れた状態で X が開く
-const SITE_URL = "https://yubokumin-voice-lp.vercel.app";
-const SHARE_TEXT =
-  "声で話すだけで、整った文章がそのままカーソルに入る無料の音声入力ツール『Grow Voice』。使うほど自分の言葉に育つ辞書がすごい。完全ローカルで月額0・トークン消費0。";
-const TWEET_URL =
-  "https://twitter.com/intent/tweet?text=" +
-  encodeURIComponent(SHARE_TEXT) +
-  "&url=" + encodeURIComponent(SITE_URL) +
-  "&via=Yubokumin28&hashtags=" + encodeURIComponent("GrowVoice,音声入力");
 
 const X_ICON = (
   <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.2 8.5 11.2h-6.6l-5.2-6.8-6 6.8H1.4l7.7-8.8L1 2.3h6.8l4.7 6.2 5.7-6.2Zm-1.2 17.6h1.8L7.1 4.2H5.2L17 19.9Z" /></svg>
@@ -98,14 +89,7 @@ export default function DownloadPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-sun animate-pulse" />ここが、いちばんのお願いです
             </div>
 
-            <div>
-              <a href={TWEET_URL} target="_blank" rel="noopener noreferrer"
-                className="peek-badge inline-flex items-center gap-2 rounded-full px-8 py-4 text-lg font-bold text-lagoon-800 bg-white ring-4 ring-white/30 hover:scale-[1.04] transition-transform shadow-[0_20px_52px_rgba(0,0,0,.3)]">
-                {X_ICON}
-                X でつぶやいて広める
-              </a>
-            </div>
-            <p className="text-xs text-lagoon-200 mt-3">タップすると、紹介文が入った状態で X が開きます。そのまま投稿 OK 🙌</p>
+            <ShareButtons />
 
             <div className="mt-7 pt-6 border-t border-white/15">
               <p className="text-sm text-lagoon-100 mb-3">フォローしてくれたら、新しい道具をここでお知らせします。</p>
