@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>音声入力LP(Grow Voice)制作フロー可視化</title>
+<style>
+  :root{
+    --ocean:#0b5e72; --ocean2:#073f4e; --teal:#13a3b5; --coral:#ff7a59; --coral2:#e85f3d;
+    --ink:#16323a; --muted:#577079; --line:#dce8ec; --bg:#f3f8fa; --white:#fff;
+    --green:#2e9e6b; --gold:#e0a93b; --shadow:0 8px 24px rgba(11,94,114,.12);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.8;padding:28px 16px 64px;}
+  .wrap{max-width:1040px;margin:0 auto;}
+  h1{font-size:26px;color:var(--ocean);letter-spacing:.01em;}
+  h2{font-size:19px;color:#fff;background:var(--ocean);padding:8px 14px;border-radius:8px;
+    margin:34px 0 16px;box-shadow:var(--shadow);}
+  h3{font-size:15px;color:var(--ocean);margin:14px 0 8px;border-left:5px solid var(--coral);padding-left:8px;}
+  .sub{color:var(--muted);margin:4px 0 18px;font-size:14px;}
+  .verdict{background:linear-gradient(135deg,var(--ocean),var(--ocean2));color:#fff;
+    border-radius:14px;padding:20px 22px;box-shadow:var(--shadow);margin:18px 0 8px;}
+  .verdict b{color:#ffd9a0;font-size:1.1em;}
+  .badge{display:inline-block;background:var(--teal);color:#fff;border-radius:999px;
+    padding:2px 12px;font-size:12px;font-weight:700;margin:2px 4px 2px 0;}
+  .badge.coral{background:var(--coral);} .badge.ghost{background:transparent;border:2px solid var(--ocean);color:var(--ocean);}
+  .badge.ext{background:#e8f3f5;color:var(--ocean);border:1px solid var(--line);}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);margin:12px 0;}
+  .timeline{display:flex;flex-direction:column;gap:0;margin:10px 0;}
+  .tl{display:flex;gap:12px;align-items:flex-start;position:relative;padding:0 0 14px 0;}
+  .tl .dot{flex:0 0 auto;width:16px;height:16px;border-radius:50%;background:var(--coral);margin-top:5px;
+    box-shadow:0 0 0 4px #fde6df;position:relative;z-index:1;}
+  .tl:not(:last-child)::before{content:"";position:absolute;left:7px;top:18px;bottom:0;width:2px;background:var(--line);}
+  .tl .body{flex:1;background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 13px;box-shadow:var(--shadow);}
+  .tl .d{font-size:12px;color:var(--teal);font-weight:700;}
+  .tl .t{font-size:13.5px;}
+  table{width:100%;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;box-shadow:var(--shadow);font-size:13.5px;margin:10px 0;}
+  th,td{padding:9px 11px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top;}
+  th{background:var(--ocean);color:#fff;font-weight:700;}
+  tr:last-child td{border-bottom:none;}
+  .pill{display:inline-block;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:700;}
+  .pill.solo{background:#e8f0fb;color:#3a6fb0;} .pill.ok{background:#e3f5ec;color:var(--green);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .k{color:var(--coral2);font-weight:700;}
+  .note{background:#fffaf0;border:1px solid #ecd9a8;border-radius:10px;padding:12px 14px;font-size:13px;color:#6b5424;margin:10px 0;}
+  .cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .cmp .col{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px;box-shadow:var(--shadow);}
+  .cmp .col.a{border-top:6px solid #1B3A5B;} .cmp .col.b{border-top:6px solid var(--teal);}
+  .cmp h4{font-size:14px;margin-bottom:6px;}
+  .cmp ul{padding-left:18px;font-size:13px;}
+  .flowrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:6px 0;}
+  .chip{background:#fff;border:2px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--ocean);}
+  .arrow{color:var(--coral);font-weight:900;font-size:22px;}
+  @media(max-width:720px){.grid2,.cmp{grid-template-columns:1fr;}}
+  .foot{color:var(--muted);font-size:12px;margin-top:30px;text-align:center;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <h1>🎤 音声入力LP「Grow Voice」はどう作られたか — 制作フロー可視化</h1>
+  <p class="sub">対象: <b>yubokumin-voice-lp.vercel.app</b>(+ /download)/ 出典: 公開リポジトリ yubokumin-voice-lp の git履歴・package.json・実ソース(事実ベース)</p>
+
+  <div class="verdict">
+    📌 結論 — このLPは <b>AI社員のリレーではなく、Claude Codeが「単独で直接ビルド」</b>しました。<br>
+    建設LP(社員バケツリレー)とは作り方が根本的に違い、<b>1人の作り手が約1週間かけて、コミットを重ねて磨いた</b>ものです。<b>本格3Dエンジン(React Three Fiber)</b>採用で、技術的には建設LPより重厚です。
+  </div>
+
+  <h2>① 制作の流れ（git履歴 = 反復の足あと）</h2>
+  <p class="sub">「第3案」として2026-06-21に着工 → 6-28まで。担当の手渡しは無く、1本の流れを直接育てています。</p>
+  <div class="timeline">
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-21 着工</div><div class="t">第3案 単一プロダクトLPの雛形を構築 <span class="badge">Next.js14</span><span class="badge">R3F</span><span class="badge">GSAP</span><span class="badge">Lenis</span></div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-23</div><div class="t">製品名を「Grow Voice」に・コピー刷新・実画面3枚を並べる</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-23</div><div class="t">声の波形セクション追加・実画面を別タブ化・Vercel用にルート配信化</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-23</div><div class="t">🦭 seal.glb の旧GitHub Pages接頭辞を撤去しルート配信に対応(3Dパス修正)</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-27</div><div class="t">ダウンロード導線＋自己紹介＋フォロー呼びかけページを追加</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-27</div><div class="t">🐞 3Dキャンバスがヒーロー/CTAのボタンを覆いクリックを奪う問題を修正</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-27</div><div class="t">「育つ辞書」セクション追加・各セクション背景を海画像化・DLページ刷新</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-27</div><div class="t">Windows/Mac 配布ZIPを設置しDLページに2ボタン追加 → v1.0.1公開</div></div></div>
+    <div class="tl"><div class="dot"></div><div class="body"><div class="d">06-28</div><div class="t">拡散を主役化(3SNS横並び・ワンクリック共有)・ヒーローに製品名を主役級表示・新ロゴ反映 <span class="pill ok">公開中</span></div></div></div>
+  </div>
+
+  <h2>② 単独ビルド or 分担？ → <span class="pill solo">単独（Claude Codeが直接）</span></h2>
+  <div class="card">
+    建設LPのような「秘書→開発→検品」の社員リレーは<b>使っていません</b>。1つのリポジトリを直接編集し、git pushでVercelが自動デプロイ、という<b>作り手1人＋自動公開</b>の構成です。
+    <div class="note">💡 比べると面白い点: 建設LPは「AIの会社が分担(逐次リレー)」、音声LPは「Claude Codeが単独で全部」。<b>どちらも並列ではない</b>のは共通ですが、体制がまるで違います。</div>
+  </div>
+
+  <h2>③ 何を・どんな技術で作ったか</h2>
+  <p class="sub">建設LPが「単一HTML＋軽量3D表示」だったのに対し、音声LPは<b>Next.jsの本格構成＋3Dエンジンを自前で動かす</b>重厚な作り。</p>
+  <div class="grid2">
+    <div class="card"><h3>📝 内容・構成</h3>
+      ヒーロー(製品名Grow Voice主役)→ベネフィット→使い方(how)→実画面(live・ツール4枚)→声の波形→<b>育つ辞書</b>(learn)→お客様の声(testi)→CTA→フッター。別ページに<b>/download</b>(配布)。
+    </div>
+    <div class="card"><h3>🦭 3Dモデル（本格エンジン）</h3>
+      <span class="badge coral">React Three Fiber</span><span class="badge">three.js</span><span class="badge">@react-three/drei</span><br>
+      自前の3Dシーン(Orb3D・ScrollScene)を<span class="k">&lt;Canvas&gt;</span>で描画し、<span class="k">useGLTF</span>で <b>seal.glb(あざらし)</b> を読込。<b>建設LPと同じあざらしモデルを再利用</b>(3DはAI制作でなく既存資産)。
+    </div>
+    <div class="card"><h3>🎬 アニメーション</h3>
+      <span class="badge ext">GSAP</span> + <span class="badge ext">GSAP ScrollTrigger</span> + <span class="badge ext">Framer Motion</span>。<br>
+      スクロール量に3D/要素を連動させる本格モーション。building LPの「素のCSS」より高機能。
+    </div>
+    <div class="card"><h3>🖱️ スクロール体感</h3>
+      <span class="badge ext">Lenis</span>(慣性スムーススクロール)＋ ScrollTrigger で<b>スクロール駆動の3Dシーン(ScrollScene)</b>。`.reveal`の段階表示も併用。
+    </div>
+    <div class="card"><h3>🔘 ボタン・UI</h3>
+      <b>ガラス質(グラスモーフィズム)</b>の自作UI: <span class="k">GlassButton</span> / <span class="k">LiquidGlassCard</span> / <span class="k">VoiceWave</span>(声の波形)。<br>
+      /download に<b>OS別2ボタン</b>＋<b>3SNS横並びのワンクリック共有(ShareButtons)</b>。
+    </div>
+    <div class="card"><h3>🖼️ 画像（自前で用意）</h3>
+      <b>Unsplashではなく自前画像</b>。海/砂/夜明け/海中の背景(bg-ocean/sand/dawn/shore・cta-underwater)、<b>実アプリのスクショ4枚</b>(tool-dict/record/settings/visual)、あざらし(seal-hero/seal-logo/swimming/story)。
+    </div>
+    <div class="card"><h3>🔤 フォント</h3>
+      <span class="badge ext">Geist / Geist Mono</span> を<b>自己ホスト(woff同梱)</b>。外部フォントCDNに頼らない。
+    </div>
+    <div class="card"><h3>🚀 ホスティング/配布</h3>
+      <span class="badge ext">Vercel</span>(main push で自動デプロイ)。/download から <b>GrowVoice Windows/Mac の配布ZIP</b>(public/downloads)を直接DL。
+    </div>
+  </div>
+
+  <h2>④ 使った外部サイト・サービス一覧</h2>
+  <table>
+    <tr><th>部位</th><th>使ったもの</th><th>詳細</th></tr>
+    <tr><td>フレームワーク</td><td>Next.js 14.2</td><td>React 18 / TypeScript / Tailwind CSS</td></tr>
+    <tr><td>3Dエンジン</td><td>React Three Fiber + three.js + drei</td><td>自前3Dシーン。seal.glb を useGLTF で読込(再利用)</td></tr>
+    <tr><td>アニメーション</td><td>GSAP(+ScrollTrigger) / Framer Motion</td><td>スクロール連動モーション</td></tr>
+    <tr><td>スムーススクロール</td><td>Lenis</td><td>慣性スクロールの体感</td></tr>
+    <tr><td>画像</td><td>自前(ローカル)</td><td>海/砂背景・実画面スクショ・あざらし。Unsplashは不使用</td></tr>
+    <tr><td>フォント</td><td>Geist(自己ホスト)</td><td>外部CDN不使用</td></tr>
+    <tr><td>ホスティング/CI</td><td>Vercel</td><td>git push main → 自動デプロイ</td></tr>
+    <tr><td>配布</td><td>public/downloads の ZIP</td><td>Windows/Mac × v1.0.0 / v1.0.1</td></tr>
+  </table>
+
+  <h2>⑤ 2つのLPを並べて比較</h2>
+  <div class="cmp">
+    <div class="col a">
+      <h4>🏗️ 建設LP（azarashi-lp）</h4>
+      <ul>
+        <li>体制: <b>AI社員の逐次リレー</b>(CEO→秘書→開発⇄検品)</li>
+        <li>土台: <b>単一HTMLファイル</b></li>
+        <li>3D: model-viewer(軽量タグ表示)</li>
+        <li>演出: <b>素のCSS/JS</b>(IntersectionObserver)</li>
+        <li>画像: Unsplash(無料ストック)</li>
+        <li>フォント: なし(OS標準)</li>
+      </ul>
+    </div>
+    <div class="col b">
+      <h4>🎤 音声LP（Grow Voice）</h4>
+      <ul>
+        <li>体制: <b>Claude Codeが単独ビルド</b>＋Vercel自動公開</li>
+        <li>土台: <b>Next.js 14(本格構成)</b></li>
+        <li>3D: <b>React Three Fiber(自前3Dエンジン)</b></li>
+        <li>演出: <b>GSAP + Lenis + Framer Motion</b></li>
+        <li>画像: <b>自前(海・実画面・あざらし)</b></li>
+        <li>フォント: Geist(自己ホスト)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="note">🦭 共通点: <b>あざらしの3Dモデル(seal.glb)は両方で再利用</b>。どちらもAIが3Dを作ったのではなく、用意済みの資産を組み込んでいます。並列処理を使っていないのも共通です。</div>
+
+  <p class="foot">出典: yubokumin-voice-lp リポジトリの git履歴・package.json・app/components/public のソースを突き合わせて再構成。</p>
+</div>
+</body>
+</html>
