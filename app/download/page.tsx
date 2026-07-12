@@ -120,7 +120,7 @@ export default function DownloadPage() {
         <LiquidGlassCard className="!bg-white/70 p-6 md:p-7">
           <div className="flex flex-col sm:flex-row sm:items-center gap-5">
             <div className="flex-1">
-              <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.0.1</div>
+              <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.0.2</div>
               <h3 className="font-display font-bold text-lg mb-1">自動学習AI付き・音声入力ツール</h3>
               <p className="text-sm text-ink-soft leading-relaxed">
                 使うほど、あなた好みに育つ。完全ローカルで月額0・トークン消費0。
@@ -128,12 +128,12 @@ export default function DownloadPage() {
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <a href="/downloads/GrowVoice-Windows-v1.0.1.zip" download
+              <a href="/downloads/GrowVoice-Windows-v1.0.2.zip" download
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
                 Windows
               </a>
-              <a href="/downloads/GrowVoice-macOS-v1.0.1.zip" download
+              <a href="/downloads/GrowVoice-macOS-v1.0.2.zip" download
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
                 Mac
