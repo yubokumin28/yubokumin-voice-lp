@@ -1,13 +1,24 @@
 "use client";
 import dynamic from "next/dynamic";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 import { GlassButton } from "@/components/ui/GlassButton";
 import { VoiceWave } from "@/components/ui/VoiceWave";
 
 const ScrollScene = dynamic(() => import("@/components/ScrollScene"), { ssr: false });
+const SealMobile = dynamic(() => import("@/components/SealMobile"), { ssr: false });
 
 export default function Home() {
+  // スクショ拡大表示(ライトボックス)。nullなら閉じている
+  const [zoom, setZoom] = useState<{ src: string; cap: string } | null>(null);
+  useEffect(() => {
+    if (!zoom) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setZoom(null);
+    document.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => { document.removeEventListener("keydown", onKey); document.body.style.overflow = ""; };
+  }, [zoom]);
+
   useEffect(() => {
     const io = new IntersectionObserver(
       (es) => es.forEach((e) => e.isIntersecting && (e.target.classList.add("in"), io.unobserve(e.target))),
@@ -33,7 +44,7 @@ export default function Home() {
             <a href="#how" className="hover:text-lagoon-600">使い方</a>
             <a href="#testi" className="hover:text-lagoon-600">声</a>
           </nav>
-          <GlassButton href="/download" primary className="!px-5 !py-2 text-sm">無料で使う</GlassButton>
+          <GlassButton href="/download" primary className="!px-5 !py-2.5 text-sm">無料で使う</GlassButton>
         </div>
       </header>
 
@@ -42,16 +53,16 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.png)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(95deg, rgba(7,59,76,.72) 0%, rgba(7,59,76,.42) 38%, rgba(7,59,76,.05) 62%, transparent 78%), linear-gradient(0deg, rgba(7,59,76,.5), transparent 35%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1200px)] pt-[68px]">
-          <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span className="font-latin font-extrabold tracking-tight leading-none text-white text-[clamp(1.7rem,1.1rem+2.2vw,3rem)]">
-              Grow <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">Voice</span>
-            </span>
-            <span className="text-lagoon-100 tracking-[.12em] text-[clamp(.95rem,.78rem+.45vw,1.2rem)]">グロウ ボイス</span>
-          </div>
-          <span className="eyebrow text-lagoon-200 mt-2 block">Voice Input Tool ・ 音声入力ツール</span>
-          <h1 className="display-1 text-white mt-3 mb-5 text-[clamp(2.6rem,1.6rem+5vw,5.6rem)] max-w-[15ch]">
-            声で、整って、<span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">そのまま</span>入る。
+          <span className="eyebrow text-lagoon-200 block">Voice Input Tool ・ 音声入力ツール</span>
+          {/* ツール名を最大表示(ブランド最優先) */}
+          <h1 className="font-latin font-extrabold tracking-tight leading-none text-white mt-3 text-[clamp(3rem,1.8rem+7vw,7rem)]">
+            Grow <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">Voice</span>
           </h1>
+          <span className="text-lagoon-100 tracking-[.14em] mt-2 block text-[clamp(.95rem,.78rem+.45vw,1.2rem)]">グロウ ボイス</span>
+          {/* サブタイトル(アザラシの視線の先) */}
+          <p id="hero-sub" className="display-1 text-white mt-4 mb-5 text-[clamp(1.55rem,1rem+2.8vw,3.1rem)]">
+            <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">成長する</span>音声入力ツール
+          </p>
           <p className="text-lagoon-100 text-[clamp(1rem,.9rem+.5vw,1.35rem)] leading-relaxed max-w-[46ch]">
             <strong className="text-white">Grow Voice</strong> は、ローカルLLM搭載の音声入力ツール。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
           </p>
@@ -62,6 +73,8 @@ export default function Home() {
             </GlassButton>
             <GlassButton href="#how" className="text-lg !px-8 !py-4 !text-white !bg-white/15 !border-white/35">仕組みを見る</GlassButton>
           </div>
+          {/* クリック前の不安を消す一言 */}
+          <p className="mt-3 text-sm text-lagoon-100/90">Windows / Mac 対応 ・ アカウント登録不要 ・ ずっと無料</p>
           <a href="/download" className="peek-badge group mt-6 inline-flex items-center gap-2 rounded-full bg-white/12 border border-white/30 backdrop-blur-md px-4 py-2 text-sm text-lagoon-100 hover:bg-white/20 transition-colors">
             <span className="text-base">👀</span>
             <span>押した先で、声が文章に変わる瞬間を体験</span>
@@ -72,6 +85,8 @@ export default function Home() {
               <div key={l}><div className="font-latin font-extrabold text-sun leading-none text-[clamp(1.6rem,1.1rem+2.5vw,3.25rem)]">{n}</div><div className="text-xs text-lagoon-200 tracking-wider mt-1">{l}</div></div>
             ))}
           </div>
+          {/* スマホだけ: 文章の下に小さなアザラシ(流し込みなので文字と重ならない) */}
+          <SealMobile />
         </div>
       </section>
 
@@ -159,11 +174,16 @@ export default function Home() {
               ["img/tool-visual.png", "見える化"],
             ].map(([src, cap]) => (
               <LiquidGlassCard key={cap} className="reveal !bg-white/70 !p-3">
-                <img src={src} alt={cap} className="w-full block rounded-lg shadow-[0_10px_30px_rgba(7,59,76,.14)]" />
+                <button type="button" onClick={() => setZoom({ src, cap })} aria-label={`${cap} を拡大表示`}
+                  className="block w-full cursor-zoom-in group relative">
+                  <img src={src} alt={cap} className="w-full block rounded-lg shadow-[0_10px_30px_rgba(7,59,76,.14)] transition-transform duration-300 group-hover:scale-[1.02]" />
+                  <span className="absolute right-2 bottom-2 w-8 h-8 grid place-items-center rounded-full bg-lagoon-900/70 text-white text-base opacity-80 group-hover:opacity-100 transition-opacity">🔍</span>
+                </button>
                 <div className="mt-3 text-sm font-bold text-lagoon-700">{cap}</div>
               </LiquidGlassCard>
             ))}
           </div>
+          <p className="mt-6 text-sm text-ink-mute reveal">画像をクリック / タップすると拡大できます</p>
         </div>
       </section>
 
@@ -248,10 +268,23 @@ export default function Home() {
             <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />Grow Voice
           </div>
           <p className="text-sm">建設×AI自動化を、ひとりで。海の向こうから。</p>
-          <a href="/download" className="text-sm font-bold text-sun hover:text-white transition-colors">作っている人を見る →</a>
+          <a href="/download" className="text-sm font-bold text-sun hover:text-white transition-colors inline-block py-2">作っている人を見る →</a>
           <span className="text-xs text-lagoon-200">© 2026 Yubokumin Lab</span>
         </div>
       </footer>
+
+      {/* ===== スクショ拡大モーダル(×か背景クリックで閉じる) ===== */}
+      {zoom && (
+        <div className="fixed inset-0 z-[100] grid place-items-center p-4 sm:p-8 bg-[rgba(6,36,68,.78)] backdrop-blur-md"
+          role="dialog" aria-modal="true" aria-label={zoom.cap} onClick={() => setZoom(null)}>
+          <div className="relative max-w-[min(94vw,1000px)]" onClick={(e) => e.stopPropagation()}>
+            <img src={zoom.src} alt={zoom.cap} className="block max-h-[82svh] w-auto max-w-full mx-auto rounded-xl shadow-[0_30px_80px_rgba(0,0,0,.45)] bg-white" />
+            <div className="mt-3 text-center text-white font-bold">{zoom.cap}</div>
+            <button type="button" onClick={() => setZoom(null)} aria-label="閉じる"
+              className="absolute -top-3 -right-3 w-10 h-10 grid place-items-center rounded-full bg-white text-lagoon-900 text-xl font-bold shadow-lg hover:scale-110 transition-transform">×</button>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

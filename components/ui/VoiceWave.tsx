@@ -11,7 +11,8 @@ const BARS = 56;
 const base = Array.from({ length: BARS }, (_, i) => {
   const center = 1 - Math.abs(i - (BARS - 1) / 2) / ((BARS - 1) / 2); // 0..1（中央で1）
   const wobble = (Math.sin(i * 1.7) + Math.sin(i * 0.6) + 2) / 4; // 0..1
-  return 0.22 + center * 0.5 + wobble * 0.28; // 0.22..1.0
+  // Math.sinはサーバーとブラウザで最下位桁がズレることがあるため丸めて一致させる(hydration警告対策)
+  return Math.round((0.22 + center * 0.5 + wobble * 0.28) * 1000) / 1000; // 0.22..1.0
 });
 
 export function VoiceWave() {

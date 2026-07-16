@@ -12,10 +12,13 @@ export default function ScrollScene() {
   const groupRef = useRef<THREE.Group>(null);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [spinning, setSpinning] = useState(true);
+  // スマホ(880px以下)はこの固定キャンバスを丸ごと作らない(WebGL節約)。代わりにSealMobileがヒーロー内に表示する
+  const [enabled, setEnabled] = useState(true);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     const narrow = window.matchMedia("(max-width:880px)").matches;
+    if (narrow) { setEnabled(false); return; }
     gsap.registerPlugin(ScrollTrigger);
 
     let lenis: any = null;
@@ -32,11 +35,16 @@ export default function ScrollScene() {
     const buildChoreo = (g: THREE.Group) => {
       if (!wrap) return;
       // 世界座標でのポーズ（カメラ z=4.6, fov=42）
+      // 画面が狭いほどヒーローのアザラシを内側へ寄せ、見切れすぎと文字被りの両方を防ぐ
+      const halfW = (innerWidth / Math.max(innerHeight, 1)) * 1.766; // 画面右端の世界X
+      const heroX = Math.min(2.0, halfW - 0.8);
       const POSE = {
-        hero:     { x: 2.2,  y: -0.15, s: 0.82, ry: -Math.PI * 0.08,  rx: 0 },
+        // hero: やや外側(右) + 左のサブタイトル(#hero-sub「成長する音声入力ツール」)へ視線を向ける。文字とは重ねない
+        hero:     { x: heroX, y: -0.1,  s: 0.82, ry: -Math.PI * 0.28, rx: -0.05 },
         benefits: { x: -2.0, y: 0.2,   s: 0.72, ry: Math.PI * 0.5,   rx: 0 },
         how:      { x: 2.15, y: 0.5,   s: 0.6,  ry: -Math.PI * 0.42, rx: 0.28 },
-        cta:      { x: 2.55, y: 0.1,   s: 0.62, ry: -Math.PI * 0.5,  rx: 0 },
+        // cta: 中央の「無料で使う」ボタンの右横で、左向きの鼻先をボタンに当てる
+        cta:      { x: 1.5,  y: -0.35, s: 0.55, ry: -Math.PI * 0.5,  rx: 0 },
       };
       gsap.set(g.position, { x: POSE.hero.x, y: POSE.hero.y });
       gsap.set(g.scale, { x: POSE.hero.s, y: POSE.hero.s, z: POSE.hero.s });
@@ -49,7 +57,7 @@ export default function ScrollScene() {
       };
       const fade = (to: number) => gsap.to(wrap, { autoAlpha: to, duration: 0.5, overwrite: true });
 
-      if (reduce || narrow) { if (narrow) wrap.style.display = "none"; return; }
+      if (reduce) return;
 
       const mk = (sel: string, pose?: typeof POSE.hero, opts: any = {}) => {
         const el = document.querySelector(sel);
@@ -93,6 +101,8 @@ export default function ScrollScene() {
       if (lenis) lenis.destroy();
     };
   }, []);
+
+  if (!enabled) return null;
 
   return (
     <div ref={wrapRef} className="orb-canvas" id="orbCanvas" aria-hidden="true">
