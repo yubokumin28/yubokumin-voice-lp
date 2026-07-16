@@ -12,7 +12,12 @@ import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 
 const SITE_URL = "https://yubokumin-voice-lp.vercel.app";
 const LIBECITY_URL = "https://libecity.com/";
-const TWEET_TEXT = `無料の音声入力ツール「Grow Voice」のモニターに参加しました🎤\n話すだけで整った文章がカーソルに入る、使うほど育つツールです。\n#GrowVoice\n${SITE_URL}`;
+
+/** 投稿本文(感想があれば先頭に入れる)。X もリベシティも共通で使う */
+function buildPostText(comment: string): string {
+  const head = comment.trim() ? `「${comment.trim()}」\n` : "";
+  return `${head}無料の音声入力ツール「Grow Voice」のモニターに参加しました🎤\n話すだけで整った文章がカーソルに入る、使うほど育つツールです。\n#GrowVoice\n${SITE_URL}`;
+}
 
 type Step = "gate" | "create" | "share";
 type VoiceItem = { url: string; name: string; ts: number };
@@ -46,6 +51,7 @@ function drawFrame(
   H: number,
   t: number,
   name: string,
+  comment: string,
   seal: HTMLImageElement | null,
   icon: HTMLImageElement | null
 ) {
@@ -103,19 +109,29 @@ function drawFrame(
   roundedPath(ctx, 11, 11, W - 22, H - 22, 24);
   ctx.stroke();
 
-  // あざらしロゴ(左下・ぷかぷか上下)
+  // ① あざらし(作者)からのお礼コメント(右下ロゴの上・ふわふわ逆位相)
+  const bob = Math.sin(t * Math.PI * 2) * 5;
+  ctx.textAlign = "center";
+  ctx.fillStyle = "#f0603d";
+  ctx.font = "700 22px 'Zen Maru Gothic', sans-serif";
+  ctx.fillText("＼ ありがとう ／", 823, 196 - bob);
+  ctx.font = "700 17px 'Zen Maru Gothic', sans-serif";
+  ctx.fillText("これからもよろしくね", 823, 224 - bob);
+  ctx.textAlign = "left";
+
+  // あざらしロゴ(右下・ぷかぷか上下)
   if (seal) {
     const s = 168;
-    const bob = Math.sin(t * Math.PI * 2) * 5;
+    const sx = W - 53 - s;
     const sy = H - s - 94 + bob;
     ctx.save();
-    roundedPath(ctx, 53, sy, s, s, 29);
+    roundedPath(ctx, sx, sy, s, s, 29);
     ctx.clip();
-    ctx.drawImage(seal, 53, sy, s, s);
+    ctx.drawImage(seal, sx, sy, s, s);
     ctx.restore();
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 6;
-    roundedPath(ctx, 53, sy, s, s, 29);
+    roundedPath(ctx, sx, sy, s, s, 29);
     ctx.stroke();
   }
 
@@ -129,9 +145,9 @@ function drawFrame(
   ctx.fillText("Grow Voice、", 261, 192);
   ctx.fillText("使ってみた！", 261, 264);
 
-  // アイコン(右上・丸)
+  // 投稿者アイコン(左上・丸)
   if (icon) {
-    const iconCx = 834;
+    const iconCx = 126;
     const iconCy = 120;
     const iconR = 62;
     ctx.save();
@@ -150,19 +166,66 @@ function drawFrame(
     ctx.stroke();
   }
 
-  // 名前プレート(中央下)
+  // ② 使ってみた感想の吹き出し(左上アイコンの真下・文字幅にフィット・中央揃え)
+  const cmt = comment.trim();
+  if (cmt) {
+    const maxChars = 11;
+    const lines: string[] = [];
+    for (let i = 0; i < cmt.length && lines.length < 3; i += maxChars) {
+      lines.push(cmt.slice(i, i + maxChars));
+    }
+    ctx.font = "700 17px 'Zen Kaku Gothic New', sans-serif";
+    const textW = Math.max(...lines.map((ln) => ctx.measureText(ln).width));
+    const boxW = Math.min(textW + 32, 240);
+    // アイコン(cx=126)の真下に中央合わせ。枠からはみ出す場合だけ内側へ寄せる
+    let boxX = 126 - boxW / 2;
+    boxX = Math.max(boxX, 15);
+    boxX = Math.min(boxX, W - 15 - boxW);
+    const bcx = boxX + boxW / 2;
+    const lineH = 25;
+    const boxH = lines.length * lineH + 22;
+    const boxY = 198;
+    ctx.fillStyle = "rgba(255,255,255,.9)";
+    roundedPath(ctx, boxX, boxY, boxW, boxH, 14);
+    ctx.fill();
+    ctx.strokeStyle = "rgba(18,156,160,.55)";
+    ctx.lineWidth = 3;
+    roundedPath(ctx, boxX, boxY, boxW, boxH, 14);
+    ctx.stroke();
+    // 吹き出しのしっぽ(アイコンに向けて上向き)
+    ctx.beginPath();
+    ctx.moveTo(bcx - 11, boxY + 1);
+    ctx.lineTo(bcx, boxY - 12);
+    ctx.lineTo(bcx + 11, boxY + 1);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(255,255,255,.95)";
+    ctx.fill();
+    ctx.fillStyle = "#0c2b33";
+    ctx.textAlign = "center";
+    lines.forEach((ln, i) => {
+      ctx.fillText(ln, bcx, boxY + 30 + i * lineH);
+    });
+    ctx.textAlign = "left";
+  }
+
+  // 名前プレート(画像の中央・文字幅にフィット)
   const plateY = 320;
+  ctx.font = "700 37px 'Zen Kaku Gothic New', sans-serif";
+  const label = `${name} さん`;
+  const shown = label.length > 14 ? label.slice(0, 14) + "…" : label;
+  const plateW = ctx.measureText(shown).width + 72;
+  const plateX = W / 2 - plateW / 2;
   ctx.fillStyle = "rgba(255,255,255,.85)";
-  roundedPath(ctx, 261, plateY, 448, 77, 21);
+  roundedPath(ctx, plateX, plateY, plateW, 77, 21);
   ctx.fill();
   ctx.strokeStyle = "rgba(255,122,89,.7)";
   ctx.lineWidth = 3;
-  roundedPath(ctx, 261, plateY, 448, 77, 21);
+  roundedPath(ctx, plateX, plateY, plateW, 77, 21);
   ctx.stroke();
   ctx.fillStyle = "#0c2b33";
-  ctx.font = "700 37px 'Zen Kaku Gothic New', sans-serif";
-  const label = `${name} さん`;
-  ctx.fillText(label.length > 14 ? label.slice(0, 14) + "…" : label, 285, plateY + 50);
+  ctx.textAlign = "center";
+  ctx.fillText(shown, W / 2, plateY + 50);
+  ctx.textAlign = "left";
 
   // フッター(URL)
   ctx.fillStyle = "#0b626e";
@@ -171,7 +234,7 @@ function drawFrame(
 }
 
 /** 参加表明のアニメGIFを合成して dataURL を返す */
-async function composeBanner(name: string, iconSrc: string | null): Promise<string> {
+async function composeBanner(name: string, comment: string, iconSrc: string | null): Promise<string> {
   const W = 960;
   const H = 504;
   const FRAMES = 12;
@@ -196,7 +259,7 @@ async function composeBanner(name: string, iconSrc: string | null): Promise<stri
 
   const gif = GIFEncoder();
   for (let f = 0; f < FRAMES; f++) {
-    drawFrame(ctx, W, H, f / FRAMES, name, seal, icon);
+    drawFrame(ctx, W, H, f / FRAMES, name, comment, seal, icon);
     const { data } = ctx.getImageData(0, 0, W, H);
     const palette = quantize(data, 256);
     const index = applyPalette(data, palette);
@@ -217,6 +280,8 @@ export default function MonitorPage() {
   const [step, setStep] = useState<Step>("gate");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [comment, setComment] = useState("");
+  const [copied, setCopied] = useState(false);
   const [iconSrc, setIconSrc] = useState<string | null>(null);
   const [banner, setBanner] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -279,7 +344,7 @@ export default function MonitorPage() {
     setErr("");
     try {
       await (document as any).fonts?.ready;
-      const url = await composeBanner(name.trim(), iconSrc);
+      const url = await composeBanner(name.trim(), comment, iconSrc);
       setBanner(url);
     } catch {
       setErr("画像の作成に失敗しました。もう一度お試しください。");
@@ -318,8 +383,19 @@ export default function MonitorPage() {
   };
 
   const tweet = () => {
-    const url = `https://x.com/intent/post?text=${encodeURIComponent(TWEET_TEXT)}`;
+    const url = `https://x.com/intent/post?text=${encodeURIComponent(buildPostText(comment))}`;
     window.open(url, "_blank", "noopener");
+  };
+
+  // リベシティ等に貼る用: 投稿本文をコピー
+  const copyText = async () => {
+    try {
+      await navigator.clipboard.writeText(buildPostText(comment));
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+    } catch {
+      setErr("コピーに失敗しました。お手数ですが手で入力してください。");
+    }
   };
 
   const inputCls =
@@ -344,11 +420,11 @@ export default function MonitorPage() {
         </a>
 
         <div className="text-center mb-10">
-          <div className="eyebrow text-lagoon-600">🦭 MONITOR</div>
-          <h1 className="display-1 text-[clamp(1.8rem,1.3rem+2.4vw,2.9rem)]">モニター参加表明ページ</h1>
+          <div className="eyebrow text-lagoon-600">🦭 MONITOR VOICES</div>
+          <h1 className="display-1 text-[clamp(1.8rem,1.3rem+2.4vw,2.9rem)]">モニターのみなさまの声</h1>
           <p className="text-ink-soft mt-3 leading-relaxed">
             Grow Voice を使ってみてくれるあなたへ。<br />
-            <strong className="text-ink">参加表明の画像を作って、ひとことつぶやいてもらえたら</strong>、このページの「みんなの声」に載ります。
+            <strong className="text-ink">感想入りの画像を作って、ひとことつぶやいてもらえたら</strong>、このページに声が並びます。
           </p>
         </div>
 
@@ -382,6 +458,15 @@ export default function MonitorPage() {
               <button className={subBtn} onClick={() => fileRef.current?.click()}>アイコン画像を選ぶ</button>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onIconPick(e.target.files?.[0])} />
             </div>
+            <label className="block text-sm font-bold mb-1">使ってみた感想(一言・任意)</label>
+            <input
+              className={inputCls + " mb-5"}
+              value={comment}
+              onChange={(e) => setComment(e.target.value)}
+              maxLength={33}
+              placeholder="例: 議事録のメモ書きがすごく楽になった！"
+            />
+            <p className="text-xs text-ink-mute -mt-3 mb-5">画像の吹き出しと、つぶやき本文の両方に入ります。あとから「作り直す」で変更できます。</p>
             {banner && (
               <img src={banner} alt="参加表明画像のプレビュー" className="w-full rounded-2xl border border-white shadow-lg mb-5" />
             )}
@@ -405,9 +490,13 @@ export default function MonitorPage() {
               <button className={subBtn} onClick={download}>① 画像をダウンロード</button>
               <button className={heroBtn} onClick={tweet}>② X でつぶやく(本文入り)</button>
             </div>
-            <p className="text-sm text-ink-mute text-center mt-4">
-              リベシティの方は <a href={LIBECITY_URL} target="_blank" rel="noopener" className="font-bold text-lagoon-700 underline">リベシティを開いて</a> つぶやきに画像を貼ってください。
-            </p>
+            <div className="mt-5 rounded-2xl bg-lagoon-50/70 border border-lagoon-200 p-4 text-center">
+              <p className="text-sm font-bold text-ink mb-2">リベシティ(リベッター)でつぶやく方</p>
+              <button className={subBtn} onClick={copyText}>{copied ? "✓ コピーしました！" : "投稿本文をコピー"}</button>
+              <p className="text-sm text-ink-mute mt-2">
+                <a href={LIBECITY_URL} target="_blank" rel="noopener" className="font-bold text-lagoon-700 underline">リベシティを開いて</a> 本文を貼り付け、①のGIF画像を添付して投稿してください。
+              </p>
+            </div>
           </LiquidGlassCard>
         )}
 
@@ -415,8 +504,8 @@ export default function MonitorPage() {
         <section className="mt-14">
           <div className="text-center mb-6">
             <div className="eyebrow text-lagoon-600">VOICES</div>
-            <h2 className="display-1 text-[clamp(1.4rem,1.1rem+1.6vw,2.1rem)]">みんなの参加表明</h2>
-            {items.length > 0 && <p className="text-sm text-ink-mute mt-1">現在 {items.length} 名が参加表明中</p>}
+            <h2 className="display-1 text-[clamp(1.4rem,1.1rem+1.6vw,2.1rem)]">みんなの声</h2>
+            {items.length > 0 && <p className="text-sm text-ink-mute mt-1">現在 {items.length} 名の声が届いています</p>}
           </div>
           {items.length === 0 ? (
             <p className="text-center text-ink-mute">まだ投稿はありません。1人目になってくれたら嬉しいです🦭</p>
