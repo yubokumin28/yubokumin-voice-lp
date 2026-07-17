@@ -223,22 +223,46 @@ export default function Home() {
             <span className="eyebrow text-lagoon-600">Voices</span>
             <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">使った人の、静かな実感。</h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-5">
-            {[
+        </div>
+
+        {/* 左右に流れるレビュー(上段=左へ / 下段=右へ)。ホバーで一時停止、reduced-motionでは静止 */}
+        <div className="space-y-5">
+          {[
+            [
               ["長文の下書きが、しゃべるだけで終わる。タイピングに戻れなくなった。", "現場監督 / 建設", "K.T"],
               ["固有名詞の誤変換が自分仕様に直っていく。使うほど賢くなる感じ。", "個人事業主 / 士業", "M.N"],
               ["音声が外に出ないのが一番の安心。社内資料の下書きにも使える。", "総務 / 中小企業", "H.A"],
-            ].map(([q, role, name]) => (
-              <LiquidGlassCard key={name} className="reveal p-7 flex flex-col">
-                <div className="text-3xl text-lagoon-300 font-display leading-none mb-2">“</div>
-                <p className="text-ink-soft leading-relaxed flex-1 italic">{q}</p>
-                <div className="mt-5 pt-4 border-t border-sand-200">
-                  <div className="font-display font-bold text-ink">{name}</div>
-                  <div className="text-xs tracking-[.18em] text-ink-mute font-latin uppercase">{role}</div>
-                </div>
-              </LiquidGlassCard>
-            ))}
-          </div>
+            ],
+            [
+              ["現場から戻る車を停めて日報を吹き込むだけ。事務所に着いたら下書きができてる。", "土木 / 一人親方", "S.Y"],
+              ["タイピングが苦手でも、見積メモと連絡文が口だけで終わるのがありがたい。", "工務店 / 経営", "T.K"],
+              ["「えー」「あのー」が勝手に消えるから、話したまま資料に貼れる。", "ライター / 個人", "R.S"],
+            ],
+          ].map((row, ri) => (
+            <div key={ri} className="overflow-hidden [mask-image:linear-gradient(90deg,transparent,black_8%,black_92%,transparent)]">
+              <div
+                className="flex w-max animate-marquee hover:[animation-play-state:paused] motion-reduce:animate-none"
+                style={{ animationDuration: ri === 0 ? "48s" : "56s", animationDirection: ri === 0 ? "normal" : "reverse" }}
+              >
+                {[...row, ...row, ...row, ...row].map(([q, role, name], i) => (
+                  <LiquidGlassCard key={i} className="w-[min(82vw,360px)] shrink-0 mr-5 p-6 flex flex-col">
+                    <div className="text-3xl text-lagoon-300 font-display leading-none mb-2">“</div>
+                    <p className="text-ink-soft leading-relaxed flex-1 italic">{q}</p>
+                    <div className="mt-5 pt-4 border-t border-sand-200">
+                      <div className="font-display font-bold text-ink">{name}</div>
+                      <div className="text-xs tracking-[.18em] text-ink-mute font-latin uppercase">{role}</div>
+                    </div>
+                  </LiquidGlassCard>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mx-auto w-[min(100%-2rem,1100px)] text-center mt-10">
+          <a href="/monitor" className="inline-block py-2 text-sm font-bold text-lagoon-700 hover:text-lagoon-500 transition-colors">
+            モニターのみなさまの声を見る →
+          </a>
         </div>
       </section>
 

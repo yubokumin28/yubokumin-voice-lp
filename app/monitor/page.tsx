@@ -146,10 +146,15 @@ function drawFrame(
   ctx.fillText("使ってみた！", 261, 264);
 
   // 投稿者アイコン(左上・丸)
+  // 白っぽいアイコンが背景に溶けて小さく見えないよう、白い下地+ラグーン色の縁取りで円の輪郭を必ず見せる
   if (icon) {
     const iconCx = 126;
     const iconCy = 120;
     const iconR = 62;
+    ctx.beginPath();
+    ctx.arc(iconCx, iconCy, iconR, 0, Math.PI * 2);
+    ctx.fillStyle = "#ffffff";
+    ctx.fill();
     ctx.save();
     ctx.beginPath();
     ctx.arc(iconCx, iconCy, iconR, 0, Math.PI * 2);
@@ -160,9 +165,14 @@ function drawFrame(
     ctx.drawImage(icon, iconCx - iw / 2, iconCy - ih / 2, iw, ih);
     ctx.restore();
     ctx.beginPath();
-    ctx.arc(iconCx, iconCy, iconR, 0, Math.PI * 2);
+    ctx.arc(iconCx, iconCy, iconR + 3, 0, Math.PI * 2);
     ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 6;
+    ctx.lineWidth = 8;
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(iconCx, iconCy, iconR + 7, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(18,156,160,.75)";
+    ctx.lineWidth = 3;
     ctx.stroke();
   }
 
