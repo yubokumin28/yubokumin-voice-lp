@@ -43,6 +43,8 @@ export default function ScrollScene() {
         hero:     { x: heroX, y: -0.1,  s: 0.82, ry: -Math.PI * 0.28, rx: -0.05 },
         benefits: { x: -2.0, y: 0.2,   s: 0.72, ry: Math.PI * 0.5,   rx: 0 },
         how:      { x: 2.15, y: 0.5,   s: 0.6,  ry: -Math.PI * 0.42, rx: 0.28 },
+        // learn: 「育つ辞書のしくみ」。右の余白へ内側寄せ(左の見出しに被らない範囲)+左向きで見出しを見る
+        learn:    { x: 1.45, y: 0.1,   s: 0.72, ry: -Math.PI * 0.18, rx: 0 },
         // cta: 中央の「無料で使う」ボタンの右横で、左向きの鼻先をボタンに当てる
         cta:      { x: 1.5,  y: -0.35, s: 0.55, ry: -Math.PI * 0.5,  rx: 0 },
       };
@@ -72,6 +74,7 @@ export default function ScrollScene() {
         onEnterBack: () => { animateTo(POSE.hero); fade(1); } }));
       mk("#benefits", POSE.benefits, { onEnter: () => fade(1) });
       mk("#how", POSE.how);
+      mk("#learn", POSE.learn);
       mk("#testi", undefined, { onEnter: () => fade(0), onEnterBack: () => fade(1) });
       mk("#cta", POSE.cta, { onEnter: () => { fade(1); setSpinning(false); }, onEnterBack: () => setSpinning(true) });
       mk("#footer", undefined, { onEnter: () => fade(0), onEnterBack: () => fade(1) });
