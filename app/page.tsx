@@ -63,9 +63,15 @@ export default function Home() {
           <p id="hero-sub" className="display-1 text-white mt-4 mb-5 text-[clamp(1.55rem,1rem+2.8vw,3.1rem)]">
             <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">成長する</span>音声入力ツール
           </p>
-          <p className="text-lagoon-100 text-[clamp(1rem,.9rem+.5vw,1.35rem)] leading-relaxed max-w-[46ch]">
-            <strong className="text-white">Grow Voice</strong> は、ローカルLLM搭載の音声入力ツール。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込む。<br />使うほどあなたの言葉づかいを学習して、変換がどんどん正確に育つ。<strong className="text-white">完全ローカルだから月額もトークン消費もゼロ。</strong>
-          </p>
+          {/* 背景写真に溶けないよう白文字+影。文は文単位で改行し途中で切らない */}
+          <div className="space-y-3.5 max-w-[34ch] [text-shadow:0_2px_12px_rgba(4,24,44,.7)]">
+            <p className="text-white text-[clamp(1.02rem,.92rem+.5vw,1.35rem)] leading-loose">
+              <strong className="text-sun">Grow Voice</strong> は、ローカルLLM搭載の音声入力ツール。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込みます。
+            </p>
+            <p className="text-white text-[clamp(1.02rem,.92rem+.5vw,1.35rem)] leading-loose">
+              使うほど言葉づかいを学習し、変換はどんどん正確に。<strong className="text-sun">完全ローカルだから、月額もトークン消費もゼロです。</strong>
+            </p>
+          </div>
           <div className="flex flex-wrap gap-3 mt-8">
             <GlassButton href="/download" primary className="text-lg !px-8 !py-4">
               無料で使う
@@ -96,8 +102,8 @@ export default function Home() {
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(253,251,246,.90) 0%, rgba(238,250,248,.78) 50%, rgba(253,251,246,.92) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
           <div className="max-w-[640px] mb-14 reveal ml-auto text-right">
-            <span className="eyebrow text-lagoon-600">Why it is enough</span>
-            <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">なぜ、これだけで<br />十分なのか。</h2>
+            <span className="eyebrow text-lagoon-600">The secret of Grow Voice</span>
+            <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">Grow Voice<br />の秘密。</h2>
           </div>
           <div className="md:pl-[36%]">
             {[
@@ -259,9 +265,14 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="mx-auto w-[min(100%-2rem,1100px)] text-center mt-10">
-          <a href="/monitor" className="inline-block py-2 text-sm font-bold text-lagoon-700 hover:text-lagoon-500 transition-colors">
-            モニターのみなさまの声を見る →
+        <div className="mx-auto w-[min(100%-2rem,1100px)] text-center mt-12 reveal">
+          <a href="/monitor" className="group inline-flex items-center gap-3 rounded-full bg-white/70 backdrop-blur border border-lagoon-200 pl-5 pr-6 py-3 shadow-[0_10px_30px_rgba(7,59,76,.10)] hover:bg-white hover:-translate-y-0.5 transition-all">
+            <span className="text-2xl leading-none">🦭</span>
+            <span className="text-left leading-tight">
+              <span className="block text-sm font-bold text-ink">モニターのみなさまの声を見る</span>
+              <span className="block text-xs text-ink-mute mt-0.5">使ってくれた方の“ひとこと画像”が集まっています</span>
+            </span>
+            <span className="text-lagoon-500 font-bold transition-transform group-hover:translate-x-1">→</span>
           </a>
         </div>
       </section>
@@ -272,12 +283,16 @@ export default function Home() {
         <div className="absolute inset-0 -z-10" style={{ background: "radial-gradient(135% 100% at 50% 6%, rgba(7,59,76,.26) 0%, rgba(7,59,76,.64) 46%, rgba(6,36,68,.92) 100%)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(6,36,68,.55) 100%)" }} />
         <span className="eyebrow text-lagoon-200 reveal">Get it</span>
-        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-8 reveal max-w-[16ch] drop-shadow-[0_3px_22px_rgba(4,24,44,.5)]">今日から、<br />タイピングを減らす。</h2>
-        <div className="reveal mt-2">
+        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-6 reveal max-w-[16ch] drop-shadow-[0_3px_22px_rgba(4,24,44,.5)]">今日から、<br />タイピングを減らす。</h2>
+        {/* ボタンのすぐ上にブランド名を必ず出す */}
+        <div className="reveal mb-5 font-latin font-extrabold text-[clamp(1.6rem,1.2rem+2vw,2.6rem)] leading-none">
+          <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">Grow Voice</span>
+        </div>
+        <div className="reveal mt-1">
           <LiquidGlassCard className="!bg-white/10 !border-white/25 px-8 py-5 inline-flex items-center gap-6">
             <span className="font-latin font-extrabold text-4xl text-sun">¥0</span>
             <GlassButton primary href="/download" className="text-lg">
-              無料で使う
+              Grow Voice を無料で使う
               <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2.4"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
             </GlassButton>
           </LiquidGlassCard>
@@ -287,13 +302,13 @@ export default function Home() {
 
       {/* ===== Footer ===== */}
       <footer id="footer" className="bg-lagoon-900 text-lagoon-100 py-14">
-        <div className="mx-auto w-[min(100%-2rem,1100px)] flex flex-wrap items-center justify-between gap-4">
-          <div className="flex items-center gap-3 font-display font-bold text-white text-lg">
-            <img src="img/seal-logo.jpg" alt="" className="w-10 h-10 rounded-full object-cover border border-white/30" />Grow Voice
+        <div className="mx-auto w-[min(100%-2rem,1100px)] flex flex-wrap items-center justify-between gap-x-6 gap-y-5">
+          <div className="flex items-center gap-3 font-display font-bold text-white text-xl">
+            <img src="img/seal-logo.jpg" alt="" className="w-12 h-12 rounded-full object-cover border border-white/30" />Grow Voice
           </div>
-          <p className="text-sm">建設×AI自動化を、ひとりで。海の向こうから。</p>
-          <a href="/download" className="text-sm font-bold text-sun hover:text-white transition-colors inline-block py-2">作っている人を見る →</a>
-          <span className="text-xs text-lagoon-200">© 2026 Yubokumin Lab</span>
+          <p className="text-base">建設×AI自動化を、ひとりで。海の向こうから。</p>
+          <a href="/download" className="text-lg font-bold text-sun hover:text-white transition-colors inline-block py-2">作っている人（遊牧民）を見る →</a>
+          <span className="text-sm text-lagoon-200">© 2026 Yubokumin Lab</span>
         </div>
       </footer>
 
