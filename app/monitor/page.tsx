@@ -468,15 +468,17 @@ export default function MonitorPage() {
               <button className={subBtn} onClick={() => fileRef.current?.click()}>アイコン画像を選ぶ</button>
               <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => onIconPick(e.target.files?.[0])} />
             </div>
-            <label className="block text-sm font-bold mb-1">使ってみた感想(一言・任意)</label>
+            <label className="block text-sm font-bold mb-1">使ってみて変わったこと(before → after・任意)</label>
             <input
               className={inputCls + " mb-5"}
               value={comment}
               onChange={(e) => setComment(e.target.value)}
               maxLength={33}
-              placeholder="例: 議事録のメモ書きがすごく楽になった！"
+              placeholder="例: 議事録が1時間→15分になった"
             />
-            <p className="text-xs text-ink-mute -mt-3 mb-5">画像の吹き出しと、つぶやき本文の両方に入ります。あとから「作り直す」で変更できます。</p>
+            <p className="text-xs text-ink-mute -mt-3 mb-5">
+              <strong className="text-ink-soft">「◯◯が△△になった」</strong>と、変わった数字を入れると伝わります(例: 日報が30分→5分に / 手が疲れなくなった)。画像の吹き出しと、つぶやき本文の両方に入ります。
+            </p>
             {banner && (
               <img src={banner} alt="参加表明画像のプレビュー" className="w-full rounded-2xl border border-white shadow-lg mb-5" />
             )}
