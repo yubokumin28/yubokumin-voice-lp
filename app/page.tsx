@@ -63,14 +63,12 @@ export default function Home() {
           <p id="hero-sub" className="display-1 text-white mt-4 mb-5 text-[clamp(1.55rem,1rem+2.8vw,3.1rem)]">
             <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">成長する</span>音声入力ツール
           </p>
-          {/* 背景写真に溶けないよう白文字+影。文は文単位で改行し途中で切らない */}
-          <div className="space-y-3.5 max-w-[34ch] [text-shadow:0_2px_12px_rgba(4,24,44,.7)]">
-            <p className="text-white text-[clamp(1.02rem,.92rem+.5vw,1.35rem)] leading-loose">
-              <strong className="text-sun">Grow Voice</strong> は、ローカルLLM搭載の音声入力ツール。ボタンを押して話すだけで、整った文章がカーソル位置へ流れ込みます。
-            </p>
-            <p className="text-white text-[clamp(1.02rem,.92rem+.5vw,1.35rem)] leading-loose">
-              使うほど言葉づかいを学習し、変換はどんどん正確に。<strong className="text-sun">完全ローカルだから、月額もトークン消費もゼロです。</strong>
-            </p>
+          {/* 背景写真に溶けないよう白文字+影。1文=1行で、途中で切らない(短文化+列幅を広げる) */}
+          <div className="max-w-[34rem] text-white text-[clamp(1rem,.9rem+.5vw,1.28rem)] leading-relaxed space-y-2.5 [text-shadow:0_2px_12px_rgba(4,24,44,.72)] [text-wrap:pretty]">
+            <p><strong className="text-sun">Grow Voice</strong> は、話すだけの音声入力ツール。</p>
+            <p>押して話せば、整った文章がそのまま入る。</p>
+            <p>使うほど、あなたの言葉づかいに育っていく。</p>
+            <p><strong className="text-sun">完全ローカル。月額もトークン消費もゼロ。</strong></p>
           </div>
           <div className="flex flex-wrap gap-3 mt-8">
             <GlassButton href="/download" primary className="text-lg !px-8 !py-4">
