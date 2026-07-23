@@ -128,7 +128,7 @@ export default function DownloadPage() {
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <a href="https://github.com/yubokumin28/voice-input-tool/releases/download/v1.1.0/GrowVoice-Windows-v1.1.0.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-Windows-v1.1.0.zip"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
                 Windows (EXE / 約103MB)
