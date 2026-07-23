@@ -124,25 +124,26 @@ export default function DownloadPage() {
               <h3 className="font-display font-bold text-lg mb-1">自動学習AI付き・音声入力ツール</h3>
               <p className="text-sm text-ink-soft leading-relaxed">
                 使うほど、あなた好みに育つ。完全ローカルで月額0・トークン消費0。
-                <strong className="text-ink">Python のインストール不要</strong>。解凍したら <strong>GrowVoice.exe</strong> をダブルクリックするだけで、タスクトレイに常駐して録音できます。
+                <strong className="text-ink">Python のインストール不要</strong>。解凍したらアプリをダブルクリックするだけで、常駐して録音できます。
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
               <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-Windows-v1.1.0.zip"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
-                Windows (EXE / 約103MB)
+                Windows (約103MB)
               </a>
-              <a href="/downloads/GrowVoice-macOS-v1.0.3.zip" download
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-macOS-v1.1.0.zip"
                 className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
-                Mac (v1.0.3)
+                Mac (約74MB)
               </a>
             </div>
           </div>
           <p className="text-xs text-ink-mute mt-3">
-            Windows 版は <strong>Python 不要のスタンドアロン exe</strong>(GitHub Releases から配信)。GPU があれば自動で高速化、無ければ CPU で動きます。<br />
-            くわしい手順は ZIP 同梱の <strong>manual.html</strong> を見てください。Mac 版は現行 1.0.3 のままです。
+            Windows は <strong>GrowVoice.exe</strong>、Mac は <strong>GrowVoice.app</strong> をダブルクリック。両方とも <strong>Python 不要のスタンドアロン</strong>(GitHub Releases から配信)。<br />
+            Windows: GPU があれば自動で高速化、無ければ CPU で動きます。<br />
+            Mac: Apple Silicon (M1/M2/M3/M4) 動作確認済み。初回起動は <strong>右クリック → 開く</strong>(署名なしのため Gatekeeper 回避)。マイクとアクセシビリティの許可も求められます。詳しくは ZIP 同梱の <strong>README-macOS.txt</strong> と <strong>manual.html</strong> を見てください。
           </p>
         </LiquidGlassCard>
 
