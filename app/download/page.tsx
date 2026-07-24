@@ -49,11 +49,6 @@ export default function DownloadPage() {
               <strong className="text-ink">Grow Voice</strong> は、声で話すだけで、整った文章がそのままカーソルに入る音声入力ツールです。
               <strong className="text-ink">月額0円・完全ローカル</strong>（ネット送信なし）で、使うほどあなたの言葉に育ちます。
             </p>
-            <p>
-              作っているのは、こういう “あったらいいな” の道具を個人でコツコツ試しているだけのひとりです。
-              無料で配っているのは、まず使ってみて気に入ってもらえたら嬉しいから。それだけです。
-            </p>
-            <p className="text-sm text-ink-mute">アイコンは、あざらし好きな妻 👸🏻 のために “あざらしの遊牧民” にしました 🦭</p>
           </div>
         </section>
 
@@ -80,14 +75,14 @@ export default function DownloadPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-lagoon-700 via-lagoon-600 to-lagoon-800" />
           <div className="relative p-7 md:p-10 text-center text-white">
             <div className="text-4xl mb-3">📣</div>
-            <h2 className="font-display font-bold text-2xl md:text-3xl mb-2">気に入ったら、ひと言つぶやいて<br className="md:hidden" />広めてください。</h2>
-            <p className="text-lagoon-100 leading-relaxed max-w-[46ch] mx-auto mb-3">
-              <strong className="text-white">ダウンロードの前に、ひと言だけ。</strong>料金も登録もいりません。
-              あなたの<strong className="text-white">ひとつぶやき</strong>が、次の道具を作りつづける一番の燃料になります。
+            <p className="peek-badge inline-block rounded-full bg-sun text-lagoon-900 font-display font-bold text-[clamp(1.05rem,.9rem+.8vw,1.45rem)] px-7 py-2.5 mb-5 shadow-[0_12px_36px_rgba(255,200,87,.5)]">
+              ＼ ここが、いちばんのお願いです ／
             </p>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-sun/25 border border-sun/50 px-3 py-1 text-xs font-bold text-white mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-sun animate-pulse" />ここが、いちばんのお願いです
-            </div>
+            <h2 className="font-display font-bold text-2xl md:text-3xl mb-3">気に入ったら、ひと言つぶやいて<br className="md:hidden" />広めてください。</h2>
+            <p className="text-lagoon-100 leading-relaxed mb-6">
+              料金も登録もいりません。<br className="sm:hidden" />
+              あなたの<strong className="text-white">ひと言</strong>が、次の道具を作る燃料になります。
+            </p>
 
             <ShareButtons />
 
@@ -129,12 +124,12 @@ export default function DownloadPage() {
             </div>
             <div className="flex gap-2 shrink-0">
               <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-Windows-v1.1.0.zip"
-                className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
+                className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
                 Windows (約103MB)
               </a>
               <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-macOS-v1.1.0.zip"
-                className="inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
+                className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
                 Mac (約74MB)
               </a>
