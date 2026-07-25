@@ -115,7 +115,7 @@ export default function DownloadPage() {
         <LiquidGlassCard className="!bg-white/70 p-6 md:p-7">
           <div className="flex flex-col sm:flex-row sm:items-center gap-5">
             <div className="flex-1">
-              <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.0</div>
+              <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ Win v1.1.1 / Mac v1.1.0</div>
               <h3 className="font-display font-bold text-lg mb-1">自動学習AI付き・音声入力ツール</h3>
               <p className="text-sm text-ink-soft leading-relaxed">
                 使うほど、あなた好みに育つ。完全ローカルで月額0・トークン消費0。
@@ -123,10 +123,10 @@ export default function DownloadPage() {
               </p>
             </div>
             <div className="flex gap-2 shrink-0">
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-Windows-v1.1.0.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.1/GrowVoice-Windows-v1.1.1.zip"
                 className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
-                Windows (約103MB)
+                Windows (約104MB)
               </a>
               <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.0/GrowVoice-macOS-v1.1.0.zip"
                 className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
@@ -137,7 +137,7 @@ export default function DownloadPage() {
           </div>
           <p className="text-xs text-ink-mute mt-3">
             Windows は <strong>GrowVoice.exe</strong>、Mac は <strong>GrowVoice.app</strong> をダブルクリック。両方とも <strong>Python 不要のスタンドアロン</strong>(GitHub Releases から配信)。<br />
-            Windows: GPU があれば自動で高速化、無ければ CPU で動きます。<br />
+            Windows: 配布版は現在 <strong>CPU動作</strong>です(GPU対応版は今後のアップデートで検討中)。二重起動時のお知らせや、固まった時の「再起動」メニューなど安定性の改善も v1.1.1 で追加しました。<br />
             Mac: Apple Silicon (M1/M2/M3/M4) 動作確認済み。初回起動は <strong>右クリック → 開く</strong>(署名なしのため Gatekeeper 回避)。マイクとアクセシビリティの許可も求められます。詳しくは ZIP 同梱の <strong>README-macOS.txt</strong> と <strong>manual.html</strong> を見てください。
           </p>
         </LiquidGlassCard>
