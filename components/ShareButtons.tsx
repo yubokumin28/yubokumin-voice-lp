@@ -30,54 +30,82 @@ const LibeIcon = (
   <svg viewBox="0 0 24 24" className="w-5 h-5 text-coral-dark" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m0 0a4 4 0 1 1 6 0M16 7a3 3 0 1 1-3.5 4.9" strokeLinecap="round" strokeLinejoin="round" /></svg>
 );
 
-type Item = { key: string; label: string; icon: ReactNode; url: string; paste: boolean };
+type Item = {
+  key: string;
+  label: string;
+  icon: ReactNode;
+  url: string;
+  paste: boolean;
+  note: string; // ボタン押下前から見える常時表示の案内
+};
 
 const ITEMS: Item[] = [
-  { key: "in", label: "LinkedInで広める", icon: InIcon, url: LINKEDIN_SHARE, paste: true },
-  { key: "x", label: "Xで広める", icon: XIcon, url: TWEET_URL, paste: false },
-  { key: "libe", label: "リベシティで広める", icon: LibeIcon, url: LIBECITY_SHARE, paste: true },
+  {
+    key: "in", label: "LinkedInで広める", icon: InIcon, url: LINKEDIN_SHARE, paste: true,
+    note: "開いた投稿画面に貼り付け（Ctrl+V）",
+  },
+  {
+    key: "x", label: "Xで広める", icon: XIcon, url: TWEET_URL, paste: false,
+    note: "そのまま投稿OK（貼り付け不要）",
+  },
+  {
+    key: "libe", label: "リベシティで広める", icon: LibeIcon, url: LIBECITY_SHARE, paste: true,
+    note: "リベシティ会員の方向け・投稿欄に貼り付け",
+  },
 ];
 
 export function ShareButtons() {
   const [toast, setToast] = useState<string | null>(null);
 
-  const go = (url: string, paste: boolean) => {
+  const go = (item: Item) => {
     // ワンクリックで紹介文をコピー（X以外は貼り付け用）→ そのSNSを開く
     try {
       navigator.clipboard?.writeText(SHARE_FULL).catch(() => {});
     } catch {}
-    window.open(url, "_blank", "noopener,noreferrer");
-    setToast(
-      paste
-        ? "📋 紹介文をコピーしました！開いた画面に貼り付け（Ctrl+V / ⌘+V）して投稿してください。"
-        : "📋 そのまま投稿OK！紹介文が入った状態で開きます（コピー済み）。"
-    );
+    window.open(item.url, "_blank", "noopener,noreferrer");
+    if (!item.paste) {
+      setToast("📋 そのまま投稿OK！紹介文が入った状態で開きます（コピー済み）。");
+    } else if (item.key === "libe") {
+      setToast(
+        "📋 紹介文をコピーしました！リベシティにログイン後、投稿欄に貼り付け"
+        + "（Ctrl+V / ⌘+V）してください（会員の方向けです）。"
+      );
+    } else {
+      setToast(
+        "📋 紹介文をコピーしました！開いた画面に貼り付け（Ctrl+V / ⌘+V）して投稿してください。"
+      );
+    }
   };
 
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
         {ITEMS.map((it) => (
-          <button
-            key={it.key}
-            type="button"
-            onClick={() => go(it.url, it.paste)}
-            className={
-              "relative inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-4 " +
-              "bg-white text-lagoon-800 font-bold ring-1 ring-white/40 " +
-              "shadow-[0_14px_36px_rgba(0,0,0,.22)] hover:scale-[1.04] active:scale-[0.98] " +
-              "transition-transform duration-150 " +
-              (it.key === "x" ? "ring-4 ring-sun/60" : "")
-            }
-          >
-            {it.key === "x" && (
-              <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-sun text-ink text-[10px] font-bold px-2 py-0.5 shadow">
-                そのまま投稿OK
-              </span>
-            )}
-            {it.icon}
-            <span className="text-[15px]">{it.label}</span>
-          </button>
+          <div key={it.key} className="flex flex-col items-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => go(it)}
+              className={
+                "relative w-full inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-4 " +
+                "bg-white text-lagoon-800 font-bold ring-1 ring-white/40 " +
+                "shadow-[0_14px_36px_rgba(0,0,0,.22)] hover:scale-[1.04] active:scale-[0.98] " +
+                "transition-transform duration-150 " +
+                (it.key === "x" ? "ring-4 ring-sun/60" : "")
+              }
+            >
+              {it.key === "x" && (
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-sun text-ink text-[10px] font-bold px-2 py-0.5 shadow">
+                  そのまま投稿OK
+                </span>
+              )}
+              {it.icon}
+              <span className="text-[15px]">{it.label}</span>
+            </button>
+            {/* 押す前から見える案内。トースト(押した後)と合わせて二重で案内する */}
+            <span className="text-[11px] text-lagoon-100/90 text-center leading-snug">
+              {it.note}
+            </span>
+          </div>
         ))}
       </div>
 
