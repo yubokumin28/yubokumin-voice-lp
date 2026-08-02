@@ -111,36 +111,103 @@ export default function DownloadPage() {
         {/* つなぎ */}
         <p className="text-center text-sm font-bold text-lagoon-700 mb-4">⬇ つぶやいてくれたら最高! その下から、無料でダウンロードできます</p>
 
-        {/* ④ ツールを試す（控えめ・無料DL） */}
-        <LiquidGlassCard className="!bg-white/70 p-6 md:p-7">
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5">
-            <div className="flex-1">
-              <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.3</div>
-              <h3 className="font-display font-bold text-lg mb-1">自動学習AI付き・音声入力ツール</h3>
-              <p className="text-sm text-ink-soft leading-relaxed">
-                使うほど、あなた好みに育つ。完全ローカルで月額0・トークン消費0。
-                <strong className="text-ink">Python のインストール不要</strong>。解凍したらアプリをダブルクリックするだけで、常駐して録音できます。
-              </p>
-            </div>
-            <div className="flex gap-2 shrink-0">
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-Windows-v1.1.3.zip"
-                className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
+        {/* ④ ツールを試す（3パターンから選ぶ） */}
+        <LiquidGlassCard className="!bg-white/70 p-6 md:p-8">
+          <div className="text-center mb-6">
+            <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.4</div>
+            <h3 className="font-display font-bold text-xl md:text-2xl mb-2">お使いのパソコンに合わせて選んでください</h3>
+            <p className="text-sm text-ink-soft leading-relaxed">
+              中身は同じ音声入力ツールです。<strong className="text-ink">お使いの機種に合わせて軽さと速さを調整した3種類</strong>を用意しました。
+            </p>
+          </div>
+
+          {/* 迷ったときの1行ガイド */}
+          <div className="rounded-2xl bg-sun/25 border border-sun/60 px-4 py-3 mb-6 text-center">
+            <p className="text-sm font-bold text-ink">
+              迷ったら ─ ノートパソコンなら <span className="text-lagoon-700">①</span> ／ デスクトップなら <span className="text-lagoon-700">②</span> ／ Mac なら <span className="text-lagoon-700">③</span>
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+
+            {/* ① ノートパソコン用 */}
+            <div className="flex flex-col rounded-2xl bg-white/80 border border-lagoon-200 p-5 shadow-[0_8px_28px_rgba(7,59,76,.10)]">
+              <div className="text-3xl mb-2" aria-hidden="true">💻</div>
+              <div className="eyebrow text-lagoon-600">① ノートパソコン用</div>
+              <h4 className="font-display font-bold text-lg mb-2 leading-snug">持ち運ぶノートPCに</h4>
+              <ul className="text-sm text-ink-soft leading-relaxed space-y-1.5 mb-4 flex-1">
+                <li>・グラフィックボードは<strong className="text-ink">不要</strong></li>
+                <li>・メモリ 8GB でも動きます</li>
+                <li>・<strong className="text-ink">電池と発熱に配慮</strong>した設定</li>
+                <li>・他のアプリを止めにくい作り</li>
+              </ul>
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-Windows-Laptop-v1.1.4.zip"
+                className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
-                Windows (約104MB)
+                ダウンロード
               </a>
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-macOS-v1.1.3.zip"
-                className="btn-glint inline-flex items-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
+              <p className="text-[11px] text-ink-mute text-center mt-2">Windows ・ 約103MB</p>
+            </div>
+
+            {/* ② デスクトップ用 */}
+            <div className="flex flex-col rounded-2xl bg-white/80 border border-lagoon-200 p-5 shadow-[0_8px_28px_rgba(7,59,76,.10)]">
+              <div className="text-3xl mb-2" aria-hidden="true">🖥️</div>
+              <div className="eyebrow text-lagoon-600">② デスクトップ用</div>
+              <h4 className="font-display font-bold text-lg mb-2 leading-snug">速さを求めるなら</h4>
+              <ul className="text-sm text-ink-soft leading-relaxed space-y-1.5 mb-4 flex-1">
+                <li>・<strong className="text-ink">いちばん高精度なモデル</strong></li>
+                <li>・グラフィックボードがあると高速</li>
+                <li>・句読点や誤変換をAIが自動学習</li>
+                <li>・メモリ 16GB 以上を推奨</li>
+              </ul>
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-Windows-Desktop-v1.1.4.zip"
+                className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
+                <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
+                ダウンロード
+              </a>
+              <p className="text-[11px] text-ink-mute text-center mt-2">Windows ・ 約104MB</p>
+            </div>
+
+            {/* ③ Mac用 */}
+            <div className="flex flex-col rounded-2xl bg-white/80 border border-ink/15 p-5 shadow-[0_8px_28px_rgba(7,59,76,.10)]">
+              <div className="text-3xl mb-2" aria-hidden="true">🍎</div>
+              <div className="eyebrow text-ink-soft">③ Mac用</div>
+              <h4 className="font-display font-bold text-lg mb-2 leading-snug">MacBook / iMac に</h4>
+              <ul className="text-sm text-ink-soft leading-relaxed space-y-1.5 mb-4 flex-1">
+                <li>・Apple Silicon (M1〜M4) 対応</li>
+                <li>・ノート / デスクトップ共通</li>
+                <li>・初回だけ<strong className="text-ink">右クリック → 開く</strong></li>
+                <li>・<strong className="text-ink">お試し版(Beta)</strong>です</li>
+              </ul>
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-macOS-v1.1.4.zip"
+                className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-2.5 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
-                Mac (約75MB)
+                ダウンロード
               </a>
+              <p className="text-[11px] text-ink-mute text-center mt-2">macOS ・ 約75MB</p>
             </div>
           </div>
-          <p className="text-xs text-ink-mute mt-3">
-            Windows は <strong>GrowVoice.exe</strong>、Mac は <strong>GrowVoice.app</strong> をダブルクリック。両方とも <strong>Python 不要のスタンドアロン</strong>(GitHub Releases から配信)。<br />
-            共通: 設定画面の表示不具合(窓が細く潰れる/「AI設定」タブの下半分に手が届かない)を修正しました(v1.1.3)。<br />
-            Windows: 配布版は現在 <strong>CPU動作</strong>です(GPU対応版は今後のアップデートで検討中)。二重起動時のお知らせや、固まった時の「再起動」メニューなど安定性の改善も追加済みです。<br />
-            Mac: Apple Silicon (M1/M2/M3/M4) 動作確認済みの<strong>実験ビルド(Beta)</strong>。初回起動は <strong>右クリック → 開く</strong>(署名なしのため Gatekeeper 回避)。マイクとアクセシビリティの許可も求められます。詳しくは ZIP 同梱の <strong>README-macOS.txt</strong> と <strong>manual.html</strong> を見てください。
-          </p>
+
+          {/* 共通の補足 */}
+          <div className="mt-6 pt-5 border-t border-lagoon-200/70 space-y-2 text-xs text-ink-mute leading-relaxed">
+            <p>
+              <strong className="text-ink-soft">3つとも共通:</strong> 完全ローカルで月額0円・クラウド送信なし。
+              <strong className="text-ink-soft">Python のインストールは不要</strong>です。解凍してアプリをダブルクリックするだけで常駐します。
+            </p>
+            <p>
+              <strong className="text-ink-soft">やめたくなったら:</strong> Windows は「設定 → アプリ」から、Mac はメニューバーのアイコンから
+              <strong className="text-ink-soft">アンインストール</strong>を選ぶだけ。残りかすもまとめて消えます(v1.1.4 から)。
+            </p>
+            <p>
+              <strong className="text-ink-soft">選び方に迷ったら:</strong> ①と②の違いは「速さ」と「PCへの負担」だけで、使い方も認識できる言葉も同じです。
+              ノートPCで②を使うと動作が重くなることがあります。
+            </p>
+            <p>
+              <strong className="text-ink-soft">Mac をお使いの方へ:</strong> 署名を付けていないため、初回起動は
+              <strong className="text-ink-soft">右クリック → 開く</strong>で許可してください。マイクとアクセシビリティの許可も求められます。
+              詳しくは ZIP 同梱の <strong className="text-ink-soft">README-macOS.txt</strong> と <strong className="text-ink-soft">manual.html</strong> をご覧ください。
+            </p>
+          </div>
         </LiquidGlassCard>
 
         <p className="text-center text-xs text-ink-mute mt-10">© 2026 Yubokumin Lab ・ 建設 × AI自動化を、ひとりで。海の向こうから。</p>
