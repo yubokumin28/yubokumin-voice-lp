@@ -257,12 +257,12 @@ async function composeBanner(name: string, comment: string, iconSrc: string | nu
   let seal: HTMLImageElement | null = null;
   let icon: HTMLImageElement | null = null;
   try {
-    seal = await loadImage("/img/seal-hero.png");
+    seal = await loadImage("/img/seal-hero.webp");
   } catch {
     /* ロゴが読めなくても画像自体は成立させる */
   }
   try {
-    icon = await loadImage(iconSrc || "/img/seal-hero.png");
+    icon = await loadImage(iconSrc || "/img/seal-hero.webp");
   } catch {
     /* アイコン無しでも成立 */
   }

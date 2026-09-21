@@ -50,7 +50,7 @@ export default function Home() {
 
       {/* ===== Hero ===== */}
       <section id="hero" className="relative min-h-[100svh] flex items-center text-white overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.png)" }} />
+        <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/hero-bg.jpg)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(95deg, rgba(7,59,76,.72) 0%, rgba(7,59,76,.42) 38%, rgba(7,59,76,.05) 62%, transparent 78%), linear-gradient(0deg, rgba(7,59,76,.5), transparent 35%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1200px)] pt-[68px]">
           <span className="eyebrow text-lagoon-200 block">Voice Input Tool ・ 音声入力ツール</span>
@@ -103,7 +103,10 @@ export default function Home() {
             <span className="eyebrow text-lagoon-600">The secret of Grow Voice</span>
             <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">Grow Voice<br />の秘密。</h2>
           </div>
-          <div className="md:pl-[36%]">
+          <div className="md:pl-[36%] relative">
+            {/* 左の空きにノートPCで打つあざらし(スマホでは文の上に小さく) */}
+            <img src="img/pose-type.webp" alt="" aria-hidden="true"
+              className="reveal block mx-auto md:mx-0 md:absolute md:left-0 md:top-0 md:w-[30%] w-48 mb-6 md:mb-0 drop-shadow-[0_18px_40px_rgba(7,59,76,.18)] animate-floaty" />
             {[
               ["01", "話すほど、育つ", "ローカルLLMがあなたの話し方の癖を学習。使えば使うほど認識と変換が正確になり、あなた専用の音声入力に育っていきます。", "学習AI"],
               ["02", "押して話すだけ", "起動ボタンを押しっぱなしにして喋るだけ。整った文章が、いま開いているアプリのカーソル位置にそのまま入っていきます。", "ワンボタン"],
@@ -123,7 +126,7 @@ export default function Home() {
       </section>
 
       {/* ===== How it works ===== */}
-      <section id="how" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-sand-50 to-lagoon-50">
+      <section id="how" className="relative isolate overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-sand-50 to-lagoon-50">
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-shore.jpg)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(250,245,234,.88) 0%, rgba(238,250,248,.80) 55%, rgba(250,245,234,.9) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
@@ -158,7 +161,8 @@ export default function Home() {
           <p className="text-ink-soft leading-relaxed max-w-[44ch] mx-auto mb-10 reveal">
             起動キーを押すと、ローカルLLMがあなたの声をリアルタイムに受け止め、整った文章へ変えていきます。
           </p>
-          <div className="reveal">
+          <div className="reveal grid md:grid-cols-[200px_1fr] gap-6 items-center">
+            <img src="img/pose-talk.webp" alt="マイクに向かって話すあざらし" className="w-40 md:w-full mx-auto drop-shadow-[0_18px_40px_rgba(7,59,76,.18)]" />
             <LiquidGlassCard className="!bg-white/60 px-6 py-10 md:px-12 md:py-12">
               <VoiceWave />
             </LiquidGlassCard>
@@ -196,7 +200,9 @@ export default function Home() {
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-shore.jpg)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(253,251,246,.91) 0%, rgba(238,250,248,.80) 50%, rgba(253,251,246,.92) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)] relative">
-          <img src="img/seal-logo.jpg" alt="" className="block absolute right-0 -top-8 w-14 h-14 sm:w-16 sm:h-16 lg:-top-2 lg:w-20 lg:h-20 rounded-full object-cover border border-white/70 shadow-[0_10px_30px_rgba(7,59,76,.18)] animate-floaty" />
+          {/* 辞書を指さすあざらし(見出しの右。スマホは見出しの上に小さく) */}
+          <img src="img/pose-book.webp" alt="辞書を指さすあざらし"
+            className="reveal block mx-auto w-40 mb-4 md:mb-0 md:absolute md:right-0 md:-top-6 md:w-[260px] lg:w-[300px] drop-shadow-[0_18px_40px_rgba(7,59,76,.18)] animate-floaty" />
           <div className="max-w-[680px] mb-14 reveal">
             <span className="eyebrow text-lagoon-600">Grows with you</span>
             <h2 className="display-1 text-[clamp(1.9rem,1.4rem+2.4vw,3.2rem)] mt-2">使うほど、あなた専用に<br />育つ辞書のしくみ。</h2>
@@ -219,7 +225,7 @@ export default function Home() {
       </section>
 
       {/* ===== Testimonials ===== */}
-      <section id="testi" className="relative overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-lagoon-50 to-sand-50">
+      <section id="testi" className="relative isolate overflow-hidden py-[clamp(5rem,3rem+8vw,10rem)] bg-gradient-to-b from-lagoon-50 to-sand-50">
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/bg-sand.jpg)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, rgba(238,250,248,.82) 0%, rgba(250,245,234,.80) 50%, rgba(253,251,246,.88) 100%)" }} />
         <div className="mx-auto w-[min(100%-2rem,1100px)]">
@@ -276,12 +282,15 @@ export default function Home() {
       </section>
 
       {/* ===== CTA ===== */}
-      <section id="cta" className="relative min-h-[92svh] flex flex-col items-center justify-center text-center overflow-hidden bg-lagoon-900 text-white">
+      <section id="cta" className="relative isolate min-h-[92svh] flex flex-col items-center justify-center text-center overflow-hidden bg-lagoon-900 text-white">
         <div className="absolute inset-0 -z-10 bg-cover bg-center" style={{ backgroundImage: "url(img/cta-underwater.jpg)" }} />
-        <div className="absolute inset-0 -z-10" style={{ background: "radial-gradient(135% 100% at 50% 6%, rgba(7,59,76,.26) 0%, rgba(7,59,76,.64) 46%, rgba(6,36,68,.92) 100%)" }} />
+        <div className="absolute inset-0 -z-10" style={{ background: "radial-gradient(135% 100% at 50% 6%, rgba(7,59,76,.12) 0%, rgba(7,59,76,.48) 46%, rgba(6,36,68,.86) 100%)" }} />
         <div className="absolute inset-0 -z-10" style={{ background: "linear-gradient(180deg, transparent 55%, rgba(6,36,68,.55) 100%)" }} />
+        {/* 「こっちだよ」と案内するあざらし(白背景の絵なので丸窓に収める) */}
+        <img src="img/pose-point.webp" alt="ダウンロードへ案内するあざらし"
+          className="reveal w-40 md:w-56 drop-shadow-[0_18px_40px_rgba(0,0,0,.45)] mb-2 animate-floaty" />
         <span className="eyebrow text-lagoon-200 reveal">Get it</span>
-        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-6 reveal max-w-[16ch] drop-shadow-[0_3px_22px_rgba(4,24,44,.5)]">今日から、<br />タイピングを減らす。</h2>
+        <h2 className="display-1 text-white text-[clamp(2.2rem,1.4rem+4vw,4.6rem)] mt-3 mb-6 reveal max-w-[24ch] drop-shadow-[0_3px_22px_rgba(4,24,44,.5)]">今日から、<br />タイピングを減らす。</h2>
         {/* ボタンのすぐ上にブランド名を必ず出す */}
         <div className="reveal mb-5 font-latin font-extrabold text-[clamp(1.6rem,1.2rem+2vw,2.6rem)] leading-none">
           <span className="bg-gradient-to-br from-sun via-[#ff9b76] to-coral bg-clip-text text-transparent">Grow Voice</span>
