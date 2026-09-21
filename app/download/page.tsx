@@ -114,7 +114,7 @@ export default function DownloadPage() {
         {/* ④ ツールを試す（3パターンから選ぶ） */}
         <LiquidGlassCard className="!bg-white/70 p-6 md:p-8">
           <div className="text-center mb-6">
-            <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.4</div>
+            <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.3</div>
             <h3 className="font-display font-bold text-xl md:text-2xl mb-2">お使いのパソコンを選ぶだけ</h3>
             <p className="text-sm text-ink-soft leading-relaxed">
               ノートPCでもデスクトップでも、<strong className="text-ink">同じものをダウンロードすればOK</strong>です。<br className="hidden sm:block" />
@@ -135,7 +135,7 @@ export default function DownloadPage() {
                 <li>・グラフィックボードは<strong className="text-ink">なくてもOK</strong></li>
                 <li>・あれば自動で高速モードに</li>
               </ul>
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-Windows-v1.1.4.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-Windows-v1.1.3.zip"
                 className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
                 Windows 版をダウンロード
@@ -154,7 +154,7 @@ export default function DownloadPage() {
                 <li>・初回だけ<strong className="text-ink">右クリック → 開く</strong></li>
                 <li>・<strong className="text-ink">お試し版(Beta)</strong>です</li>
               </ul>
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-macOS-v1.1.4.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-macOS-v1.1.3.zip"
                 className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
                 Mac 版をダウンロード
@@ -174,8 +174,8 @@ export default function DownloadPage() {
               <strong className="text-ink-soft">Python のインストールは不要</strong>です。解凍してアプリをダブルクリックするだけで常駐します。
             </p>
             <p>
-              <strong className="text-ink-soft">やめたくなったら:</strong> Windows は「設定 → アプリ」から、Mac はメニューバーのアイコンから
-              <strong className="text-ink-soft">アンインストール</strong>を選ぶだけ。残りかすもまとめて消えます(v1.1.4 から)。
+              <strong className="text-ink-soft">やめたくなったら:</strong> 解凍したフォルダをそのまま削除するだけです。
+              次の v1.1.4 からは Windows の「設定 → アプリ」/ Mac のメニューバーから<strong className="text-ink-soft">アンインストール</strong>を選べるようになります。
             </p>
             <p>
               <strong className="text-ink-soft">Mac をお使いの方へ:</strong> 署名を付けていないため、初回起動は
