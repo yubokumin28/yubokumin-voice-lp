@@ -1,20 +1,15 @@
 import type { Metadata } from "next";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 import { ShareButtons } from "@/components/ShareButtons";
+import { PromptCopyBlocks } from "@/components/PromptCopyBlocks";
 
 export const metadata: Metadata = {
   title: "ダウンロード — Grow Voice（グロウボイス）",
   description:
-    "声で話すだけで整った文章がそのままカーソルに入る、無料の音声入力ツール Grow Voice。個人でコツコツ作っています。気に入ったら SNS でひと言ひろめてもらえると嬉しいです。",
+    "声で話すだけで整った文章がそのままカーソルに入る、無料の音声入力ツール Grow Voice。個人でコツコツ作っています。気に入ったらリベシティでひと言つぶやいてもらえると嬉しいです。",
 };
 
-const X_URL = "https://x.com/Yubokumin28";
-const LINKEDIN_URL = "https://www.linkedin.com/in/watarutakahashi1992/";
 const LIBECITY_URL = "https://libecity.com/user_profile/c0bL05vIXaYL1a2dpMrWYBSbGEI3";
-
-const X_ICON = (
-  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor"><path d="M18.2 2.3h3.3l-7.2 8.2 8.5 11.2h-6.6l-5.2-6.8-6 6.8H1.4l7.7-8.8L1 2.3h6.8l4.7 6.2 5.7-6.2Zm-1.2 17.6h1.8L7.1 4.2H5.2L17 19.9Z" /></svg>
-);
 
 export default function DownloadPage() {
   return (
@@ -78,7 +73,7 @@ export default function DownloadPage() {
             <p className="peek-badge inline-block rounded-full bg-sun text-lagoon-900 font-display font-bold text-[clamp(1.05rem,.9rem+.8vw,1.45rem)] px-7 py-2.5 mb-5 shadow-[0_12px_36px_rgba(255,200,87,.5)]">
               ＼ ここが、いちばんのお願いです ／
             </p>
-            <h2 className="font-display font-bold text-2xl md:text-3xl mb-3">気に入ったら、ひと言つぶやいて<br className="md:hidden" />広めてください。</h2>
+            <h2 className="font-display font-bold text-2xl md:text-3xl mb-3">気に入ったら、リベシティで<br className="md:hidden" />ひと言つぶやいてください。</h2>
             <p className="text-lagoon-100 leading-relaxed mb-6">
               料金も登録もいりません。<br className="sm:hidden" />
               あなたの<strong className="text-white">ひと言</strong>が、次の道具を作る燃料になります。
@@ -87,23 +82,12 @@ export default function DownloadPage() {
             <ShareButtons />
 
             <div className="mt-7 pt-6 border-t border-white/15">
-              <p className="text-sm text-lagoon-100 mb-3">フォローしてくれたら、新しい道具をここでお知らせします。</p>
-              <div className="flex flex-wrap items-center justify-center gap-3">
-                <a href={X_URL} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white bg-ink/90 ring-1 ring-white/20 hover:bg-ink hover:scale-[1.03] transition-all">
-                  {X_ICON}<span>X でフォロー</span>
-                </a>
-                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white bg-[#0a66c2] ring-1 ring-white/20 hover:brightness-110 hover:scale-[1.03] transition-all">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor"><path d="M20.4 3H3.6A.6.6 0 0 0 3 3.6v16.8a.6.6 0 0 0 .6.6h16.8a.6.6 0 0 0 .6-.6V3.6a.6.6 0 0 0-.6-.6ZM8.3 18.3H5.4V9.5h2.9v8.8ZM6.9 8.3a1.7 1.7 0 1 1 0-3.4 1.7 1.7 0 0 1 0 3.4Zm11.4 10H15.4v-4.3c0-1 0-2.4-1.4-2.4s-1.7 1.1-1.7 2.3v4.4H9.5V9.5h2.7v1.2h.1a3 3 0 0 1 2.7-1.5c2.9 0 3.4 1.9 3.4 4.4v4.7Z" /></svg>
-                  <span>LinkedIn</span>
-                </a>
-                <a href={LIBECITY_URL} target="_blank" rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-br from-coral to-coral-dark ring-1 ring-white/20 hover:scale-[1.03] transition-all">
-                  <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m0 0a4 4 0 1 1 6 0M16 7a3 3 0 1 1-3.5 4.9" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  <span>リベシティ</span>
-                </a>
-              </div>
+              <p className="text-sm text-lagoon-100 mb-3">フォローしてくれたら、新しい道具をリベシティでお知らせします。</p>
+              <a href={LIBECITY_URL} target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-br from-coral to-coral-dark ring-1 ring-white/20 hover:scale-[1.03] transition-all">
+                <svg viewBox="0 0 24 24" className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2"><path d="M17 20h5v-2a4 4 0 0 0-3-3.87M9 20H4v-2a4 4 0 0 1 3-3.87m0 0a4 4 0 1 1 6 0M16 7a3 3 0 1 1-3.5 4.9" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                <span>遊牧民のプロフィール(リベシティ)</span>
+              </a>
             </div>
           </div>
         </div>
@@ -184,6 +168,22 @@ export default function DownloadPage() {
               詳しくは ZIP 同梱の <strong className="text-ink-soft">README-macOS.txt</strong> と <strong className="text-ink-soft">manual.html</strong> をご覧ください。
             </p>
           </div>
+        </LiquidGlassCard>
+
+        {/* ④' ソース同梱 = AI に改良を頼める */}
+        <LiquidGlassCard className="!bg-white/70 p-6 md:p-8 mt-6">
+          <div className="eyebrow text-lagoon-600 mb-1">Open source ・ 中身が読める</div>
+          <h3 className="font-display font-bold text-xl md:text-2xl mb-3">プログラムをそのまま同梱。AI に「ここを直して」と頼めます。</h3>
+          <p className="text-sm text-ink-soft leading-relaxed mb-4">
+            ZIP の中に Python のソースコードがそのまま入っています。固めたアプリではないので、
+            <strong className="text-ink">Claude Code や Codex にフォルダを開かせて、下の文を貼るだけ</strong>で、
+            自分のパソコンに合わせた調整や、好みの改良をお願いできます。プログラムが読めなくても大丈夫です。
+          </p>
+          <PromptCopyBlocks />
+          <p className="text-xs text-ink-mute leading-relaxed mt-4">
+            使い方: ZIP を解凍したフォルダで Claude Code(または Codex)を開き、「コピー」を押した文をそのまま貼って Enter。
+            改良したものを配り直すのも自由です(Moonshine エンジン部分は同梱の NOTICE_moonshine.txt の条件に従ってください)。
+          </p>
         </LiquidGlassCard>
 
         {/* ⑤ 推奨パソコンスペック(正直に書く) */}
