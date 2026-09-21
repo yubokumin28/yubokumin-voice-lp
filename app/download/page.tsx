@@ -114,7 +114,7 @@ export default function DownloadPage() {
         {/* ④ ツールを試す（3パターンから選ぶ） */}
         <LiquidGlassCard className="!bg-white/70 p-6 md:p-8">
           <div className="text-center mb-6">
-            <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.3</div>
+            <div className="eyebrow text-lagoon-600 mb-1">Try it ・ 無料 ・ v1.1.4</div>
             <h3 className="font-display font-bold text-xl md:text-2xl mb-2">お使いのパソコンを選ぶだけ</h3>
             <p className="text-sm text-ink-soft leading-relaxed">
               ノートPCでもデスクトップでも、<strong className="text-ink">同じものをダウンロードすればOK</strong>です。<br className="hidden sm:block" />
@@ -135,12 +135,12 @@ export default function DownloadPage() {
                 <li>・グラフィックボードは<strong className="text-ink">なくても動きます</strong>(待ち時間は下の推奨スペック参照)</li>
                 <li>・あれば自動で高速モードに</li>
               </ul>
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-Windows-v1.1.3.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-Windows-v1.1.4.zip"
                 className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-sm font-bold text-white bg-lagoon-700 hover:bg-lagoon-800 transition-colors">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M3 5.6 10.4 4.5v7.1H3V5.6Zm0 12.8 7.4 1.1v-7H3v5.9Zm8.4 1.2L21 21V12.6h-9.6v7Zm0-15.7v7.2H21V3l-9.6 1.2Z" /></svg>
                 Windows 版をダウンロード
               </a>
-              <p className="text-[11px] text-ink-mute text-center mt-2">約103MB</p>
+              <p className="text-[11px] text-ink-mute text-center mt-2">約1.5MB(初回起動時に部品を自動取得)</p>
             </div>
 
             {/* Mac */}
@@ -154,12 +154,12 @@ export default function DownloadPage() {
                 <li>・初回だけ<strong className="text-ink">右クリック → 開く</strong></li>
                 <li>・<strong className="text-ink">お試し版(Beta)</strong>です</li>
               </ul>
-              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-macOS-v1.1.3.zip"
+              <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.4/GrowVoice-macOS-v1.1.4.zip"
                 className="btn-glint inline-flex items-center justify-center gap-1.5 rounded-full px-4 py-3 text-sm font-bold text-white bg-ink hover:opacity-90 transition-opacity">
                 <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M16.4 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.9-1.4-.1-2.8.8-3.5.8s-1.9-.8-3-.8c-1.5 0-3 .9-3.8 2.3-1.6 2.8-.4 7 1.2 9.3.8 1.1 1.7 2.4 2.9 2.3 1.2 0 1.6-.7 3-.7s1.8.7 3 .7 2-1 2.8-2.2c.9-1.3 1.2-2.5 1.3-2.6-.1 0-2.5-1-2.5-3ZM14.3 5.7c.6-.8 1-1.9.9-3-.9 0-2 .6-2.7 1.4-.6.7-1.1 1.8-.9 2.9 1 .1 2-.5 2.7-1.3Z" /></svg>
                 Mac 版をダウンロード
               </a>
-              <p className="text-[11px] text-ink-mute text-center mt-2">約75MB</p>
+              <p className="text-[11px] text-ink-mute text-center mt-2">約1.5MB(初回セットアップ時に部品を自動取得)</p>
             </div>
           </div>
 
@@ -171,11 +171,12 @@ export default function DownloadPage() {
             </p>
             <p>
               <strong className="text-ink-soft">共通:</strong> 完全ローカルで月額0円・クラウド送信なし。
-              <strong className="text-ink-soft">Python のインストールは不要</strong>です。解凍してアプリをダブルクリックするだけで常駐します。
+              <strong className="text-ink-soft">Python 3.10〜3.12 が必要</strong>です(無料。入れ方は同梱マニュアルの手順どおり)。
+              解凍して Windows は「② 音声入力を起動」、Mac は「_mac/セットアップ.command」をダブルクリックすると、初回だけ部品と音声モデルを自動で取得し、以後は常駐します。
             </p>
             <p>
               <strong className="text-ink-soft">やめたくなったら:</strong> 解凍したフォルダをそのまま削除するだけです。
-              次の v1.1.4 からは Windows の「設定 → アプリ」/ Mac のメニューバーから<strong className="text-ink-soft">アンインストール</strong>を選べるようになります。
+              v1.1.4 からは Windows の「設定 → アプリ」/ Mac のメニューバーから<strong className="text-ink-soft">アンインストール</strong>を選べます。
             </p>
             <p>
               <strong className="text-ink-soft">Mac をお使いの方へ:</strong> 署名を付けていないため、初回起動は
@@ -228,9 +229,9 @@ export default function DownloadPage() {
                   </td>
                   <td className="py-3 pr-3 align-top">
                     <span className="font-bold text-lagoon-700">約 0.5 秒</span>
-                    <span className="block text-xs text-ink-mute">次の v1.1.4 から(現行 v1.1.3 は約 1〜3 秒)</span>
+                    <span className="block text-xs text-ink-mute">v1.1.4 から(v1.1.3 以前は約 1〜3 秒)</span>
                   </td>
-                  <td className="py-3 align-top">高め(Moonshine 日本語)<span className="block text-xs text-ink-mute">現行 v1.1.3 は標準〜やや低め</span></td>
+                  <td className="py-3 align-top">高め(Moonshine 日本語)<span className="block text-xs text-ink-mute">v1.1.3 以前は標準〜やや低め</span></td>
                 </tr>
               </tbody>
             </table>
@@ -249,7 +250,7 @@ export default function DownloadPage() {
               新しめの CPU(Core Ultra / Ryzen 7 など)ならこの半分程度が目安です。
             </p>
             <p>
-              <strong className="text-ink-soft">次の v1.1.4 で解決します:</strong> グラフィックボードなしのパソコンでは、
+              <strong className="text-ink-soft">v1.1.4 で解決しました:</strong> グラフィックボードなしのパソコンでは、
               30 秒枠に引き伸ばさず<strong className="text-ink-soft">話している間に認識を進める新エンジン(Moonshine 日本語)</strong>を自動で使います。
               同じ上のダウンロードで、パソコンを見て自動で切り替わるので、別のボタンは要りません。
               実測(同じ i7-10710U ノート・グラフィックボード未使用): キーを離してから文字が出るまで <strong className="text-ink-soft">0.4〜0.7 秒</strong>、
