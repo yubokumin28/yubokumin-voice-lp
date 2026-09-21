@@ -132,7 +132,7 @@ export default function DownloadPage() {
               <ul className="text-sm text-ink-soft leading-relaxed space-y-1.5 mb-4 flex-1">
                 <li>・Windows 10 / 11</li>
                 <li>・メモリ 8GB から動きます</li>
-                <li>・グラフィックボードは<strong className="text-ink">なくてもOK</strong></li>
+                <li>・グラフィックボードは<strong className="text-ink">なくても動きます</strong>(待ち時間は下の推奨スペック参照)</li>
                 <li>・あれば自動で高速モードに</li>
               </ul>
               <a href="https://github.com/yubokumin28/grow-voice-releases/releases/download/v1.1.3/GrowVoice-Windows-v1.1.3.zip"
@@ -181,6 +181,74 @@ export default function DownloadPage() {
               <strong className="text-ink-soft">Mac をお使いの方へ:</strong> 署名を付けていないため、初回起動は
               <strong className="text-ink-soft">右クリック → 開く</strong>で許可してください。マイクとアクセシビリティの許可も求められます。
               詳しくは ZIP 同梱の <strong className="text-ink-soft">README-macOS.txt</strong> と <strong className="text-ink-soft">manual.html</strong> をご覧ください。
+            </p>
+          </div>
+        </LiquidGlassCard>
+
+        {/* ⑤ 推奨パソコンスペック(正直に書く) */}
+        <LiquidGlassCard className="!bg-white/70 p-6 md:p-8 mt-6">
+          <div className="text-center mb-5">
+            <div className="eyebrow text-lagoon-600 mb-1">Spec ・ 推奨パソコンスペック</div>
+            <h3 className="font-display font-bold text-xl md:text-2xl mb-2">正直に書きます: 速さはグラフィックボードで決まります</h3>
+            <p className="text-sm text-ink-soft leading-relaxed">
+              どのパソコンでも動きますが、<strong className="text-ink">「話し終えてから文字が出るまでの待ち時間」</strong>が大きく変わります。
+            </p>
+          </div>
+
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left border-collapse">
+              <thead>
+                <tr className="text-xs text-ink-mute border-b border-lagoon-200/70">
+                  <th className="py-2 pr-3 font-bold">パソコン</th>
+                  <th className="py-2 pr-3 font-bold">待ち時間</th>
+                  <th className="py-2 font-bold">精度</th>
+                </tr>
+              </thead>
+              <tbody className="text-ink-soft">
+                <tr className="border-b border-lagoon-200/50 bg-lagoon-50/60">
+                  <td className="py-3 pr-3 align-top">
+                    <div className="font-bold text-ink">◎ おすすめ: NVIDIA グラフィックボード搭載 Windows</div>
+                    <div className="text-xs text-ink-mute">GeForce GTX 1650 以上(VRAM 4GB〜)。ゲーミングノートやクリエイター向けノートも含む</div>
+                  </td>
+                  <td className="py-3 pr-3 align-top font-bold text-lagoon-700">約 0.3 秒</td>
+                  <td className="py-3 align-top">最高(large-v3-turbo)</td>
+                </tr>
+                <tr className="border-b border-lagoon-200/50">
+                  <td className="py-3 pr-3 align-top">
+                    <div className="font-bold text-ink">○ Apple Silicon Mac(M1〜M4)</div>
+                    <div className="text-xs text-ink-mute">お試し版(Beta)。速度・精度は検証中です</div>
+                  </td>
+                  <td className="py-3 pr-3 align-top">検証中</td>
+                  <td className="py-3 align-top">検証中</td>
+                </tr>
+                <tr>
+                  <td className="py-3 pr-3 align-top">
+                    <div className="font-bold text-ink">△ グラフィックボードなしの Windows</div>
+                    <div className="text-xs text-ink-mute">メモリ 8GB 以上。一般的な事務用・薄型ノートはここ</div>
+                  </td>
+                  <td className="py-3 pr-3 align-top font-bold text-coral-dark">約 1〜3 秒</td>
+                  <td className="py-3 align-top">標準〜やや低め(small / base)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div className="mt-5 pt-5 border-t border-lagoon-200/70 space-y-2 text-xs text-ink-mute leading-relaxed">
+            <p>
+              <strong className="text-ink-soft">なぜグラフィックボードなしだと待つのか:</strong>
+              中の音声認識エンジン(Whisper)は、<strong className="text-ink-soft">どんなに短い発話でも音声を必ず 30 秒の枠に引き伸ばして処理する</strong>構造です。
+              グラフィックボードならこの 1 回分が一瞬で終わりますが、CPU だと 1 回ごとに固定の時間がかかり、
+              「ひと言だけ話しても 2 秒待つ」ということが起きます。話す長さを短くしても縮まりません。
+            </p>
+            <p>
+              <strong className="text-ink-soft">実測(2019 年の省電力ノート i7-10710U・グラフィックボード未使用):</strong>
+              標準モード(small)で 1.5 秒の発話 → 2.7 秒待ち、6.7 秒の発話 → 3.0 秒待ち。軽さ優先(base)なら約 1 秒待ちですが精度が落ちます。
+              新しめの CPU(Core Ultra / Ryzen 7 など)ならこの半分程度が目安です。
+            </p>
+            <p>
+              <strong className="text-ink-soft">次の一手:</strong> グラフィックボードなしのパソコン向けに、
+              30 秒枠に引き伸ばさない軽量エンジン(<strong className="text-ink-soft">SenseVoice / Moonshine</strong>)を使った版を準備中です。
+              できたらこのページにダウンロードボタンを追加します。
             </p>
           </div>
         </LiquidGlassCard>
