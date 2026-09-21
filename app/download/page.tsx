@@ -226,8 +226,11 @@ export default function DownloadPage() {
                     <div className="font-bold text-ink">△ グラフィックボードなしの Windows</div>
                     <div className="text-xs text-ink-mute">メモリ 8GB 以上。一般的な事務用・薄型ノートはここ</div>
                   </td>
-                  <td className="py-3 pr-3 align-top font-bold text-coral-dark">約 1〜3 秒</td>
-                  <td className="py-3 align-top">標準〜やや低め(small / base)</td>
+                  <td className="py-3 pr-3 align-top">
+                    <span className="font-bold text-lagoon-700">約 0.5 秒</span>
+                    <span className="block text-xs text-ink-mute">次の v1.1.4 から(現行 v1.1.3 は約 1〜3 秒)</span>
+                  </td>
+                  <td className="py-3 align-top">高め(Moonshine 日本語)<span className="block text-xs text-ink-mute">現行 v1.1.3 は標準〜やや低め</span></td>
                 </tr>
               </tbody>
             </table>
@@ -246,9 +249,11 @@ export default function DownloadPage() {
               新しめの CPU(Core Ultra / Ryzen 7 など)ならこの半分程度が目安です。
             </p>
             <p>
-              <strong className="text-ink-soft">次の一手:</strong> グラフィックボードなしのパソコン向けに、
-              30 秒枠に引き伸ばさない軽量エンジン(<strong className="text-ink-soft">SenseVoice / Moonshine</strong>)を使った版を準備中です。
-              できたらこのページにダウンロードボタンを追加します。
+              <strong className="text-ink-soft">次の v1.1.4 で解決します:</strong> グラフィックボードなしのパソコンでは、
+              30 秒枠に引き伸ばさず<strong className="text-ink-soft">話している間に認識を進める新エンジン(Moonshine 日本語)</strong>を自動で使います。
+              同じ上のダウンロードで、パソコンを見て自動で切り替わるので、別のボタンは要りません。
+              実測(同じ i7-10710U ノート・グラフィックボード未使用): キーを離してから文字が出るまで <strong className="text-ink-soft">0.4〜0.7 秒</strong>、
+              例文 10 文の読み上げで文字誤り率 1.0%。Powered by Moonshine AI。
             </p>
           </div>
         </LiquidGlassCard>
