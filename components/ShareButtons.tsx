@@ -8,12 +8,15 @@ import { useState } from "react";
 // YouTube だけ(2026-09-21 実測)。画像は投稿欄の「画像を追加」から選ぶしかないので、
 // 1 クリックで ①紹介文をコピー ②画像をダウンロード ③投稿欄を開く の 3 つを済ませ、
 // 利用者には「貼り付け」と「画像を選ぶ」の 2 操作だけ残す。
-const SITE_URL = "https://yubokumin-voice-lp.vercel.app";
+// ⛔ リベッターには外部サイト(Vercel)の URL を載せない決まり(2026-09-21 旦那様指示)。
+//    載せるのは遊牧民のリベシティ プロフィール URL だけ。
+const PROFILE_URL = "https://libecity.com/user_profile/c0bL05vIXaYL1a2dpMrWYBSbGEI3";
 const SHARE_TEXT =
-  "声で話すだけで、整った文章がそのままカーソルに入る無料の音声入力ツール『Grow Voice』。"
-  + "使うほど自分の言葉に育つ辞書がすごい。完全ローカルで月額0・トークン消費0。"
-  + "ソース同梱なので Claude Code や Codex に「ここを直して」と頼める。";
-const SHARE_FULL = SHARE_TEXT + "\n" + SITE_URL;
+  "遊牧民さんから無料の音声入力ツール『Grow Voice』をもらいました🦭\n"
+  + "声で話すだけで、整った文章がそのままカーソルに入る。使うほど自分の言葉に育つ辞書がすごい。\n"
+  + "完全ローカルで月額0・トークン消費0。ソース同梱なので Claude Code や Codex に「ここを直して」と頼めます。\n"
+  + "配布はこのプロフィールから👇";
+const SHARE_FULL = SHARE_TEXT + "\n" + PROFILE_URL;
 
 // 投稿に添える画像(public/img に置く)。差し替える時はこのファイルを上書きするだけ。
 const SHARE_IMAGE = "/img/share-libecity.png";
