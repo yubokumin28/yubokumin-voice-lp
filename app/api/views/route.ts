@@ -20,9 +20,18 @@ function today(): string {
 
 const empty = (): Stats => ({ total: 0, days: {}, since: today() });
 
-// Blob の CDN は最短でも 60 秒キャッシュするので、同じ関数インスタンスが
-// 温まっている間は自分が書いた値を正とする(読み直しで巻き戻らないための保険)。
-const mem = globalThis as unknown as { __gvViews?: Stats };
+// Blob の CDN は最短でも 60 秒キャッシュするので、直前に自分が書いた値を
+// 90 秒だけ正として持つ(読み直しで巻き戻らないための保険)。
+// ⛔ 期限を切らないと、外から 0 に戻しても温まった関数が古い数を返し続ける
+//    (2026-09-23 実測)。
+const MEM_TTL_MS = 90_000;
+const mem = globalThis as unknown as { __gvViews?: { s: Stats; at: number } };
+
+function fresherThan(fresh: Stats): Stats | null {
+  const m = mem.__gvViews;
+  if (!m || Date.now() - m.at > MEM_TTL_MS) return null;
+  return m.s.total > fresh.total ? m.s : null;
+}
 
 async function read(): Promise<Stats> {
   try {
@@ -36,15 +45,14 @@ async function read(): Promise<Stats> {
       days: j.days || {},
       since: j.since || today(),
     };
-    const m = mem.__gvViews;
-    return m && m.total > fresh.total ? m : fresh;
+    return fresherThan(fresh) ?? fresh;
   } catch {
-    return mem.__gvViews ?? empty();
+    return mem.__gvViews?.s ?? empty();
   }
 }
 
 async function write(s: Stats): Promise<void> {
-  mem.__gvViews = s;
+  mem.__gvViews = { s, at: Date.now() };
   await put(PATH, JSON.stringify(s), {
     access: "public",
     contentType: "application/json",
