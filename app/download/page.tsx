@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { LiquidGlassCard } from "@/components/ui/LiquidGlassCard";
 import { ShareButtons } from "@/components/ShareButtons";
 import { PromptCopyBlocks } from "@/components/PromptCopyBlocks";
+import { ViewCounter } from "@/components/ViewCounter";
 
 export const metadata: Metadata = {
   title: "ダウンロード — Grow Voice（グロウボイス）",
@@ -34,6 +35,7 @@ export default function DownloadPage() {
             <img src="/img/seal-hero.webp" alt="あざらしの遊牧民" className="w-44 h-44 md:w-52 md:h-52 mx-auto rounded-[28px] object-cover bg-white border-2 border-white shadow-[0_18px_50px_rgba(7,59,76,.22)] mb-4" />
             <div className="eyebrow text-lagoon-600">🦭 個人でツールを作っています ｜ 遊牧民</div>
             <h1 className="font-display font-bold text-[clamp(1.7rem,1.2rem+2.2vw,2.7rem)] leading-tight mt-1">「書く」を、声でラクに。</h1>
+            <div className="mt-3"><ViewCounter /></div>
           </div>
           <div className="space-y-4 text-ink-soft leading-relaxed text-[1.02rem]">
             <p className="text-[1.12rem] font-bold text-ink">

@@ -33,6 +33,10 @@ const LibeIcon = (
 export function ShareButtons() {
   const [done, setDone] = useState(false);
 
+  // ⛔ つぶやき画面は window.open で開かない(2026-09-23 実測: ウィンドウ指定つきの
+  //    window.open は Chrome にポップアップとして止められ、画像の保存だけが起きていた)。
+  //    ボタン自体を target="_blank" のリンクにして、ブラウザの通常の遷移で開かせる。
+  //    この関数はコピーと画像保存だけを担当し、画面遷移は邪魔しない。
   const go = () => {
     // ① 紹介文 + URL をクリップボードへ
     try {
@@ -45,15 +49,15 @@ export function ShareButtons() {
     document.body.appendChild(a);
     a.click();
     a.remove();
-    // ③ リベッターの投稿欄を開く
-    window.open(LIBECITY_POST_URL, "_blank", "noopener,noreferrer");
     setDone(true);
   };
 
   return (
     <div>
-      <button
-        type="button"
+      <a
+        href={LIBECITY_POST_URL}
+        target="_blank"
+        rel="noopener noreferrer"
         onClick={go}
         className={
           "relative w-full max-w-md mx-auto inline-flex items-center justify-center gap-3 rounded-2xl px-6 py-5 " +
@@ -66,7 +70,7 @@ export function ShareButtons() {
         </span>
         {LibeIcon}
         <span>リベシティでつぶやく</span>
-      </button>
+      </a>
 
       {/* 押す前から見える 3 ステップ。押した後は「済み」表示に変わる */}
       <ol className="mt-5 grid gap-2 sm:grid-cols-3 text-left text-sm">
@@ -91,7 +95,14 @@ export function ShareButtons() {
           aria-live="polite"
           className="mt-4 inline-block rounded-xl bg-white/95 text-ink text-sm font-bold px-4 py-2.5 shadow-[0_10px_30px_rgba(0,0,0,.25)]"
         >
-          📋 紹介文をコピーし、画像を保存しました。開いた画面に貼り付け → 画像を選んで「つぶやく」で完了です。
+          <p>📋 紹介文をコピーし、画像を保存しました。開いた画面に貼り付け → 画像を選んで「つぶやく」で完了です。</p>
+          <p className="mt-1 font-medium text-ink-soft">
+            つぶやき画面が開かなかったときは{" "}
+            <a href={LIBECITY_POST_URL} target="_blank" rel="noopener noreferrer" className="underline font-bold text-lagoon-700">
+              こちらから開けます
+            </a>
+            。
+          </p>
         </div>
       )}
     </div>
